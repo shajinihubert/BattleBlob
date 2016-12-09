@@ -1,7 +1,7 @@
 module mojo_top (
     input clk,              // 50MHz clock
     input rst_n,            // reset button (active low)
-    output led [8],         // 8 user controllable LEDs
+    //output led [8],         // 8 user controllable LEDs
     input cclk,             // configuration clock, AVR ready when high
     output spi_miso,        // AVR SPI MISO
     input spi_ss,           // AVR SPI Slave Select
@@ -10,24 +10,433 @@ module mojo_top (
     output spi_channel [4], // AVR general purpose pins (used by default to select ADC channel)
     input avr_tx,           // AVR TX (FPGA RX)
     output avr_rx,          // AVR RX (FPGA TX)
-    input avr_rx_busy       // AVR RX buffer full
+    input avr_rx_busy,       // AVR RX buffer full
+    output p1sc[5],
+    output p1sr[7],
+    output p1ogc[5],
+    output p1ogr[7],
+    output p1orc[5],
+    output p1orr[7],
+    output p2sc[5],
+    output p2sr[7],
+    output p2ogc[5],
+    output p2ogr[7],
+    output p2orc[5],
+    output p2orr[7],
+    input p1left,
+    input p1right,
+    input p1Up,
+    input p1Dn,
+    input p1Etr,
+    input p2Lft,
+    input p2Rgt,
+    input p2Up,
+    input p2Dn,
+    input p2Etr  
   ) {
   
   sig rst;                  // reset signal
   
+  sig p1Btn[5], p2Btn[5];
+  
+  sig p1_onesleft, p2_onesleft;
+  
+  sig sp1sdff[5][7][3];
+  sig sp1odff[5][7][3];
+  sig sp2sdff[5][7][3];
+  sig sp2odff[5][7][3];
+  
+  sig sp1_blob[2];
+  sig sp2_blob[2];
+  
+  sig sp1_tempc[5];
+  sig sp1_tempr[7];
+  sig sp2_tempc[5];
+  sig sp2_tempr[7];
+  
+  sig sactivated[4];
+  
+  dotMatrix dmP1s(.clk(clk), .rst(rst));
+  dotMatrix dmP1o(.clk(clk), .rst(rst));
+  dotMatrix dmP2s(.clk(clk), .rst(rst));
+  dotMatrix dmP2o(.clk(clk), .rst(rst));
+  
+  var i,j;
+
   .clk(clk) {
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
+    
+    edge_detector edge_detectorP1up(#RISE(1), #FALL(0)); //edge detector
+    button_conditioner button_condP1up; //debounce and metastability
+    
+    edge_detector edge_detectorP1down(#RISE(1), #FALL(0));
+    button_conditioner button_condP1down;
+    
+    edge_detector edge_detectorP1left(#RISE(1), #FALL(0));
+    button_conditioner button_condP1left;
+    
+    edge_detector edge_detectorP1right(#RISE(1), #FALL(0));
+    button_conditioner button_condP1right;
+    
+    edge_detector edge_detectorP1enter(#RISE(1), #FALL(0));
+    button_conditioner button_condP1enter;
+    
+    edge_detector edge_detectorP2up(#RISE(1), #FALL(0));
+    button_conditioner button_condP2up;
+    
+    edge_detector edge_detectorP2down(#RISE(1), #FALL(0));
+    button_conditioner button_condP2down;
+    
+    edge_detector edge_detectorP2left(#RISE(1), #FALL(0));
+    button_conditioner button_condP2left;
+    
+    edge_detector edge_detectorP2right(#RISE(1), #FALL(0));
+    button_conditioner button_condP2right;
+    
+    edge_detector edge_detectorP2enter(#RISE(1), #FALL(0));
+    button_conditioner button_condP2enter;
+
     reset_conditioner reset_cond;
+    
+      dff p1sdff[5][7][3](.clk(clk));
+      dff p1odff[5][7][3](.clk(clk));
+      dff p2sdff[5][7][3](.clk(clk));
+      dff p2odff[5][7][3](.clk(clk));
+    
+      dff p1_blob[2](.clk(clk));
+      dff p2_blob[2](.clk(clk));
+    
+      dff p1_tempc[5](.clk(clk));
+      dff p1_tempr[7](.clk(clk));
+      dff p2_tempc[5](.clk(clk));
+      dff p2_tempr[7](.clk(clk));
+    
+      dff activated[4](.clk(clk));
+  
+  .rst(rst){
+
+    
+      fsm state(.clk(clk),#INIT(INITIALISE)) = {INITIALISE, PREP,SETTLE_P1, SETTLE_P2, PLAY, SETTLE_P1_OPP, SETTLE_P2_OPP, SETTLE_SELF, WIN};
+  }
   }
   
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
     
-    led = 8h00;             // turn LEDs off
+    //led = 8h00;             // turn LEDs off
     spi_miso = bz;          // not using SPI
     spi_channel = bzzzz;    // not using flags
     avr_rx = bz;            // not using serial port
-  }
+    
+    //pass dff value to sig
+      sp1sdff = p1sdff.q;
+      sp1odff = p1odff.q;
+      sp2sdff = p2sdff.q;
+      sp2odff = p2odff.q;
+  
+      sp1_blob = p1_blob.q;
+      sp2_blob = p2_blob.q;
+    
+      sp1_tempc = p1_tempc.q;
+      sp1_tempr = p1_tempr.q;
+      sp2_tempc = p2_tempc.q;
+      sp2_tempr = p2_tempr.q;
+    
+      sactivated = activated.q;
+    
+    //button initialization
+    button_condP1up.in = p1Up;edge_detectorP1up.in = button_condP1up.out;
+    button_condP1down.in = p1Dn;edge_detectorP1down.in = button_condP1down.out;
+    button_condP1left.in = p1left;edge_detectorP1left.in = button_condP1left.out;
+    button_condP1right.in = p1right;edge_detectorP1right.in = button_condP1right.out;
+    button_condP1enter.in = p1Etr;edge_detectorP1enter.in = button_condP1enter.out;
+    button_condP2up.in = p2Up;edge_detectorP2up.in = button_condP2up.out;
+    button_condP2down.in = p2Dn;edge_detectorP2down.in = button_condP2down.out;
+    button_condP2left.in = p2Lft;edge_detectorP2left.in = button_condP2left.out;
+    button_condP2right.in = p2Rgt;edge_detectorP2right.in = button_condP2right.out;
+    button_condP2enter.in = p2Etr;edge_detectorP2enter.in = button_condP2enter.out;
+    
+    //consolidating all buttons to a signle signal
+    p1Btn = c{edge_detectorP1up.out, edge_detectorP1down.out, edge_detectorP1left.out, edge_detectorP1right.out, edge_detectorP1enter.out};
+    p2Btn = c{edge_detectorP2up.out, edge_detectorP2down.out, edge_detectorP2left.out, edge_detectorP2right.out, edge_detectorP2enter.out};
+
+    //maping output ports to dot matrix
+    p1sc = dmP1s.greenc;p1sr = dmP1s.greenr;
+    p1ogc= dmP1o.greenc;p1ogr= dmP1o.greenr;
+    p1orc = dmP1o.redc;p1orr = dmP1o.redr;
+    p2sc = dmP2s.greenc;p2sr= dmP2s.greenr;
+    p2ogc= dmP2o.greenc;p2ogr= dmP2o.greenr;
+    p2orc= dmP2o.redc;p2orr= dmP2o.redr;
+    
+        //maping output ports to dot matrix
+    p1sc = dmP1o.greenc;p1sr = dmP1o.greenr;
+    
+    p1ogc= dmP1s.greenc;p1ogr= dmP1s.greenr;
+    p1orc = dmP1s.redc;p1orr = dmP1s.redr;
+    
+    p2sc = dmP2o.greenc;p2sr= dmP2o.greenr;
+    
+    p2ogc= dmP2s.greenc;p2ogr= dmP2s.greenr;
+    p2orc= dmP2s.redc;p2orr= dmP2s.redr;
+    
+    //dot matrix initialisation
+    dmP1s.activate = sactivated[0];dmP1s.confirmed = sp1sdff;dmP1s.tempc = sp1_tempc;dmP1s.tempr = sp1_tempr;
+    dmP1o.activate = sactivated[1];dmP1o.confirmed = sp1odff;dmP1o.tempc = sp1_tempc;dmP1o.tempr = sp1_tempr;
+    dmP2s.activate = sactivated[2];dmP2s.confirmed = sp2sdff;dmP2s.tempc = sp2_tempc;dmP2s.tempr = sp2_tempr;
+    dmP2o.activate = sactivated[3];dmP2o.confirmed = sp2odff;dmP2o.tempc = sp2_tempc;dmP2o.tempr = sp2_tempr;
+    
+    p1_onesleft = 0;
+    p2_onesleft = 0;
+    
+    
+    
+       case(state.q){
+      state.INITIALISE:
+            p1_tempc.d = 5b00011;
+            p1_tempr.d = 7b0000011;
+            p2_tempc.d = 5b00011;
+            p2_tempr.d = 7b0000011;
+            p1_blob.d = 0;
+            p2_blob.d = 0;
+            activated.d = 4b0101;
+            state.d=state.PREP;
+      //p1 and p2 use d-pads to control blobs
+      //PREP state used to set the positions of both blobs
+      state.PREP:
+              case(p1Btn){
+                5b10000: //up
+    					      if (sp1_tempc <= 5b01100) {
+    						        if (sp1_blob !=2) p1_tempc.d = sp1_tempc << 1; 
+    						         }
+                5b01000: //down
+                  if (sp1_tempc >= 5b00110) {
+    						        if (sp1_blob !=2) p1_tempc.d = sp1_tempc >> 1;
+    						         }
+                5b00010: //left
+    					      if (sp1_tempr <=7b0110000) {
+    						        if (sp1_blob !=2) p1_tempr.d = sp1_tempr << 1; 
+    						        }
+                5b00100: //right 
+    					      if (sp1_tempr >=7b0000110) {
+    						        if (sp1_blob !=2) p1_tempr.d = sp1_tempr >> 1;
+    						        }
+                5b00001://set
+                   if (sp1_blob !=2) state.d=state.SETTLE_P1;
+              }
+        
+              case(p2Btn){
+                5b10000: //up
+    					      if (sp2_tempc <= 5b01100) {
+    						        if (sp2_blob !=2) p2_tempc.d = sp2_tempc << 1; 
+    						         }
+                5b01000: //down
+                  if (sp2_tempc >= 5b00110) {
+    						        if (sp2_blob !=2) p2_tempc.d = sp2_tempc >> 1;
+    						         }
+                5b00010: //left
+    					      if (sp2_tempr <=7b0110000) {
+    						        if (sp2_blob !=2) p2_tempr.d = sp2_tempr << 1; 
+    						        }
+                5b00100: //right 
+    					      if (sp2_tempr >=7b0000110) {
+    						        if (sp2_blob !=2) p2_tempr.d = sp2_tempr >> 1;
+    						         }
+                5b00001://set
+                   if (sp2_blob !=2) state.d=state.SETTLE_P2;
+              }
+       state.SETTLE_P1:
+                p1_blob.d = sp1_blob + 1;
+                for (i=0;i<5;i++){
+                   for(j=0;j<7;j++){
+                     if(sp1_tempc[i] == 1 && sp1_tempr[j] == 1)
+                          p1sdff.d[i][j] = 1;                      //set blob
+                     else p1sdff.d[i][j] = sp1sdff[i][j];
+                   }
+                }
+                if(sp1_blob == 1 && sp2_blob == 2) {
+                    activated.d = 4b1010;
+                    p1_blob.d = 0;
+                    p2_blob.d = 0;
+                    p1_tempc.d = 5b00001;
+                    p1_tempr.d = 7b0000001;
+                    p2_tempc.d = 5b00001;
+                    p2_tempr.d = 7b0000001;
+                    //change activated boards for temp movement
+                    state.d=state.PLAY;
+                }
+                else state.d=state.PREP;
+        
+       state.SETTLE_P2:
+                p2_blob.d = sp2_blob + 1;
+                for (i=0;i<5;i++){
+                   for(j=0;j<7;j++){
+                     if(sp2_tempc[i] == 1 && sp2_tempr[j] == 1)
+                          p2sdff.d[i][j] = 1;                      //set blob
+                      else p2sdff.d[i][j] = sp2sdff[i][j];
+                   }
+                }
+                if(sp1_blob == 2 && sp2_blob == 1) {
+                    activated.d = 4b1010;
+                    p1_blob.d = 0;
+                    p2_blob.d = 0;
+                    p1_tempc.d = 5b00001;
+                    p1_tempr.d = 7b0000001;
+                    p2_tempc.d = 5b00001;
+                    p2_tempr.d = 7b0000001;
+                    
+                    //change activated boards for temp movement
+                    state.d=state.PLAY;
+                 }
+                else state.d=state.PREP;
+       state.PLAY:
+              case(p1Btn){
+                5b10000: //up
+    					      if (sp1_tempc <= 5b01000) {
+    						        if (sp1_blob !=1) p1_tempc.d = sp1_tempc << 1; 
+    						        state.d=state.PLAY; }
+                5b01000: //down
+                  if (sp1_tempc >= 5b00010) {
+    						        if (sp1_blob !=1) p1_tempc.d = sp1_tempc >> 1;
+    						        state.d=state.PLAY; }
+                5b00010: //left
+    					      if (sp1_tempr <=7b0100000) {
+    						        if (sp1_blob !=1) p1_tempr.d = sp1_tempr << 1; 
+    						        state.d=state.PLAY;}
+                5b00100: //right 
+    					      if (sp1_tempr >=7b0000010) {
+    						        if (sp1_blob !=1) p1_tempr.d = sp1_tempr >> 1;
+    						        state.d=state.PLAY; }
+                5b00001://set
+                   if (sp1_blob !=1) state.d=state.SETTLE_P1_OPP;
+              }
+        
+              case(p2Btn){
+                5b10000: //up
+    					      if (sp2_tempc <= 5b01000) {
+    						        if (sp2_blob !=1) p2_tempc.d = sp2_tempc << 1; 
+    						        state.d=state.PLAY; }
+                5b01000: //down
+                  if (sp2_tempc >= 5b00010) {
+    						        if (sp2_blob !=1) p2_tempc.d = sp2_tempc >> 1;
+    						        state.d=state.PLAY; }
+                5b00010: //left
+    					      if (sp2_tempr <=7b0100000) {
+    						        if (sp2_blob !=1) p2_tempr.d = sp2_tempr << 1; 
+    						        state.d=state.PLAY;}
+                5b00100: //right 
+    					      if (sp2_tempr >=7b0000010) {
+    						        if (sp2_blob !=1) p2_tempr.d = sp2_tempr >> 1;
+    						        state.d=state.PLAY; }
+                5b00001://set
+                   if (sp2_blob !=1) state.d=state.SETTLE_P2_OPP;
+              }
+      //when p1 has chosen his position to launch attack, position is added to his attack board
+      //SETTLE_P1_OPP state used to update master array for attack board
+      state.SETTLE_P1_OPP:
+                p1_blob.d = 1;
+                for(i=0;i<5;i++){
+                    for(j=0;j<7;j++){
+                      if(sp1_tempc[i] == 1 && sp1_tempr[j] == 1)
+                          p1odff.d[i][j] = 5; //assume its a miss first, will reassign later
+                    }
+                }
+                if(sp2_blob == 1) state.d=state.SETTLE_SELF;
+                else state.d=state.PLAY;
+      state.SETTLE_P2_OPP:
+                p2_blob.d = 1;
+                for(i=0;i<5;i++){
+                    for(j=0;j<7;j++){
+                      if(sp2_tempc[i] == 1 && sp2_tempr[j] == 1)
+                          p2odff.d[i][j] = 5; //assume its a miss, will reassign later
+                    }
+                }
+                if(sp1_blob == 1) state.d=state.SETTLE_SELF;
+                else state.d=state.PLAY;
+      state.SETTLE_SELF:
+                p1_blob.d = 0; //initialise everytime we come to this state
+                p2_blob.d = 0;
+      
+                for(i=0;i<5;i++){
+                  for(j=0;j<7;j++){
+                    if(sp1odff[i][j] == 5 && sp2sdff[i][j] == 1){ //hit on p2s=2
+                      sp2sdff[i][j]=2;
+                      sp1odff[i][j]=4;
+                     }
+            
+                    if(sp1odff[i][j] == 5 && sp2sdff[i][j] == 0){ //miss on p2s=3
+                        sp2sdff[i][j]=3;
+                        sp1odff[i][j]=5;
+                      }
+              
+                    if(sp2odff[i][j] == 5 && sp1sdff[i][j] == 1){ //hit on p1s=2
+                        sp1sdff[i][j]=2;
+                        sp2odff[i][j]=4;
+                     }
+            
+                    if(sp2odff[i][j] == 5 && sp1sdff[i][j] == 0){ //miss on p1s=3
+                        sp1sdff[i][j]=3;
+                        sp2odff[i][j]=5;
+                      }
+            
+                      if(sp1sdff[i][j] == 1)
+                          p1_onesleft =  1;
+            
+                      if(sp2sdff[i][j] == 1)
+                          p2_onesleft =  1;
+              
+                      if (p1_onesleft != 0 && p2_onesleft != 0)
+                          state.d=state.PLAY;
+                  }
+              }
+            
+              if(p1_onesleft==0 && p2_onesleft==0){ //both win!
+                for(i=0;i<5;i++){
+                  for(j=0;j<7;j++){
+                    sp1odff[i][j]=0;
+                    sp1sdff[i][j]=3;
+                    sp2odff[i][j]=0;
+                    sp2sdff[i][j]=3;
+                  }
+                }
+                state.d=state.WIN;
+              }
+        
+             else if(p1_onesleft==0){ //p2 wins!
+                for(i=0;i<5;i++){
+                  for(j=0;j<7;j++){
+                    sp1odff[i][j]=0;
+                    sp1sdff[i][j]=3;
+                    sp2odff[i][j]=0;
+                    sp2sdff[i][j]=1;
+                  }
+                }
+                state.d=state.WIN;
+              }
+            
+            else if(p2_onesleft==0){ //p1 wins!
+                state.d=state.WIN;
+                for(i=0;i<5;i++){
+                  for(j=0;j<7;j++){
+                 sp1odff[i][j]=0;
+                 sp1sdff[i][j]=1;
+                 sp2odff[i][j]=0;
+                 sp2sdff[i][j]=3;
+            }
+                }
+          state.d=state.WIN;
+              }
+              p1odff.d = sp1odff;
+              p1sdff.d = sp1sdff;
+              p2odff.d = sp2odff;
+              p2sdff.d = sp2sdff;
+                
+                
+      state.WIN:
+        state.d=state.WIN;
+            
+   
+    }
+}
 }
