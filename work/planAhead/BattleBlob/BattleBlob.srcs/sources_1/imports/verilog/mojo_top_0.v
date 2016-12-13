@@ -351,6 +351,17 @@ module mojo_top_0 (
     .shift(M_sh7_shift)
   );
   
+  wire [3-1:0] M_add1_sum;
+  reg [3-1:0] M_add1_a;
+  reg [3-1:0] M_add1_b;
+  reg [6-1:0] M_add1_alufn;
+  mojo_adder_28 add1 (
+    .a(M_add1_a),
+    .b(M_add1_b),
+    .alufn(M_add1_alufn),
+    .sum(M_add1_sum)
+  );
+  
   always @* begin
     M_state_d = M_state_q;
     M_p2odff_d = M_p2odff_q;
@@ -376,6 +387,9 @@ module mojo_top_0 (
     M_sh7_b = 3'h1;
     M_sh5_alufn = 6'h00;
     M_sh7_alufn = 6'h00;
+    M_add1_b = 3'h2;
+    M_add1_alufn = 6'h00;
+    M_add1_a = 1'h0;
     sp1sdff = M_p1sdff_q;
     sp1odff = M_p1odff_q;
     sp2sdff = M_p2sdff_q;
@@ -724,19 +738,23 @@ module mojo_top_0 (
           for (j = 1'h0; j < 3'h7; j = j + 1) begin
             if (sp1odff[(i)*21+(j)*3+2-:3] == 3'h5 && sp2sdff[(i)*21+(j)*3+2-:3] == 1'h1) begin
               sp2sdff[(i)*21+(j)*3+2-:3] = 2'h2;
-              sp1odff[(i)*21+(j)*3+2-:3] = 3'h4;
+              M_add1_a = sp2sdff[(i)*21+(j)*3+2-:3];
+              sp1odff[(i)*21+(j)*3+2-:3] = M_add1_sum;
             end
             if (sp1odff[(i)*21+(j)*3+2-:3] == 3'h5 && sp2sdff[(i)*21+(j)*3+2-:3] == 1'h0) begin
               sp2sdff[(i)*21+(j)*3+2-:3] = 2'h3;
-              sp1odff[(i)*21+(j)*3+2-:3] = 3'h5;
+              M_add1_a = sp2sdff[(i)*21+(j)*3+2-:3];
+              sp1odff[(i)*21+(j)*3+2-:3] = M_add1_sum;
             end
             if (sp2odff[(i)*21+(j)*3+2-:3] == 3'h5 && sp1sdff[(i)*21+(j)*3+2-:3] == 1'h1) begin
               sp1sdff[(i)*21+(j)*3+2-:3] = 2'h2;
-              sp2odff[(i)*21+(j)*3+2-:3] = 3'h4;
+              M_add1_a = sp1sdff[(i)*21+(j)*3+2-:3];
+              sp2odff[(i)*21+(j)*3+2-:3] = M_add1_sum;
             end
             if (sp2odff[(i)*21+(j)*3+2-:3] == 3'h5 && sp1sdff[(i)*21+(j)*3+2-:3] == 1'h0) begin
               sp1sdff[(i)*21+(j)*3+2-:3] = 2'h3;
-              sp2odff[(i)*21+(j)*3+2-:3] = 3'h5;
+              M_add1_a = sp1sdff[(i)*21+(j)*3+2-:3];
+              sp2odff[(i)*21+(j)*3+2-:3] = M_add1_sum;
             end
             if (sp1sdff[(i)*21+(j)*3+2-:3] == 1'h1) begin
               p1_onesleft = 1'h1;
@@ -797,17 +815,12 @@ module mojo_top_0 (
   end
   
   always @(posedge clk) begin
-    M_activated_q <= M_activated_d;
-  end
-  
-  
-  always @(posedge clk) begin
     M_p2_tempc_q <= M_p2_tempc_d;
   end
   
   
   always @(posedge clk) begin
-    M_p2odff_q <= M_p2odff_d;
+    M_p2sdff_q <= M_p2sdff_d;
   end
   
   
@@ -821,12 +834,32 @@ module mojo_top_0 (
   
   
   always @(posedge clk) begin
+    M_p1odff_q <= M_p1odff_d;
+  end
+  
+  
+  always @(posedge clk) begin
+    M_activated_q <= M_activated_d;
+  end
+  
+  
+  always @(posedge clk) begin
     M_p2_tempr_q <= M_p2_tempr_d;
   end
   
   
   always @(posedge clk) begin
-    M_p1sdff_q <= M_p1sdff_d;
+    M_p1_blob_q <= M_p1_blob_d;
+  end
+  
+  
+  always @(posedge clk) begin
+    M_p1_tempc_q <= M_p1_tempc_d;
+  end
+  
+  
+  always @(posedge clk) begin
+    M_p2odff_q <= M_p2odff_d;
   end
   
   
@@ -841,22 +874,7 @@ module mojo_top_0 (
   
   
   always @(posedge clk) begin
-    M_p1_tempc_q <= M_p1_tempc_d;
-  end
-  
-  
-  always @(posedge clk) begin
-    M_p1_blob_q <= M_p1_blob_d;
-  end
-  
-  
-  always @(posedge clk) begin
-    M_p2sdff_q <= M_p2sdff_d;
-  end
-  
-  
-  always @(posedge clk) begin
-    M_p1odff_q <= M_p1odff_d;
+    M_p1sdff_q <= M_p1sdff_d;
   end
   
 endmodule

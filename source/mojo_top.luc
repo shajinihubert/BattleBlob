@@ -123,6 +123,7 @@ module mojo_top (
   
   shifter5 sh5;
   shifter7 sh7;
+  mojo_adder add1;
   
   
   always {
@@ -140,6 +141,11 @@ module mojo_top (
     sh7.b = 3b1;
     sh5.alufn = 6b0;
     sh7.alufn = 6b0;
+    
+    add1.b = 3b010;
+    add1.alufn = 6b000000;
+    add1.a = 0;
+    
     
     //pass dff value to sig
       sp1sdff = p1sdff.q;
@@ -436,22 +442,30 @@ module mojo_top (
                   for(j=0;j<7;j++){
                     if(sp1odff[i][j] == 5 && sp2sdff[i][j] == 1){ //hit on p2s=2
                       sp2sdff[i][j]=2;
-                      sp1odff[i][j]=4;
+                      //sp1odff[i][j]=4;
+                      add1.a = sp2sdff[i][j];
+                      sp1odff[i][j] = add1.sum;
                      }
             
                     if(sp1odff[i][j] == 5 && sp2sdff[i][j] == 0){ //miss on p2s=3
                         sp2sdff[i][j]=3;
-                        sp1odff[i][j]=5;
+                        //sp1odff[i][j]=5;
+                      add1.a = sp2sdff[i][j];
+                      sp1odff[i][j] = add1.sum;
                       }
               
                     if(sp2odff[i][j] == 5 && sp1sdff[i][j] == 1){ //hit on p1s=2
                         sp1sdff[i][j]=2;
-                        sp2odff[i][j]=4;
+                        //sp2odff[i][j]=4;
+                      add1.a = sp1sdff[i][j];
+                      sp2odff[i][j] = add1.sum;
                      }
             
                     if(sp2odff[i][j] == 5 && sp1sdff[i][j] == 0){ //miss on p1s=3
                         sp1sdff[i][j]=3;
-                        sp2odff[i][j]=5;
+                        //sp2odff[i][j]=5;
+                      add1.a = sp1sdff[i][j];
+                      sp2odff[i][j] = add1.sum;
                       }
             
                       if(sp1sdff[i][j] == 1)
