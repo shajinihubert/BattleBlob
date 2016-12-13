@@ -121,6 +121,10 @@ module mojo_top (
   }
   }
   
+  shifter5 sh5;
+  shifter7 sh7;
+  
+  
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
@@ -129,6 +133,13 @@ module mojo_top (
     spi_miso = bz;          // not using SPI
     spi_channel = bzzzz;    // not using flags
     avr_rx = bz;            // not using serial port
+    
+    sh5.a = 5b0;
+    sh7.a = 7b0;
+    sh5.b = 3b1;
+    sh7.b = 3b1;
+    sh5.alufn = 6b0;
+    sh7.alufn = 6b0;
     
     //pass dff value to sig
       sp1sdff = p1sdff.q;
@@ -205,47 +216,79 @@ module mojo_top (
       //p1 and p2 use d-pads to control blobs
       //PREP state used to set the positions of both blobs
       state.PREP:
-              case(p1Btn){
-                5b10000: //up
-    					      if (sp1_tempc <= 5b01100) {
-    						        if (sp1_blob !=2) p1_tempc.d = sp1_tempc << 1; 
-    						         }
-                5b01000: //down
-                  if (sp1_tempc >= 5b00110) {
-    						        if (sp1_blob !=2) p1_tempc.d = sp1_tempc >> 1;
-    						         }
-                5b00010: //left
-    					      if (sp1_tempr <=7b0110000) {
-    						        if (sp1_blob !=2) p1_tempr.d = sp1_tempr << 1; 
-    						        }
-                5b00100: //right 
-    					      if (sp1_tempr >=7b0000110) {
-    						        if (sp1_blob !=2) p1_tempr.d = sp1_tempr >> 1;
-    						        }
-                5b00001://set
-                   if (sp1_blob !=2) state.d=state.SETTLE_P1;
-              }
-        
+              sh5.a = sp2_tempc;
+              sh7.a = sp2_tempr;
               case(p2Btn){
                 5b10000: //up
     					      if (sp2_tempc <= 5b01100) {
-    						        if (sp2_blob !=2) p2_tempc.d = sp2_tempc << 1; 
+    						        if (sp2_blob !=2) {
+                          sh5.alufn = 6b000000;
+                          p2_tempc.d = sh5.shift; 
+                      }
     						         }
                 5b01000: //down
                   if (sp2_tempc >= 5b00110) {
-    						        if (sp2_blob !=2) p2_tempc.d = sp2_tempc >> 1;
+    						        if (sp2_blob !=2) {
+                          sh5.alufn = 6b000001;
+                          p2_tempc.d = sh5.shift;
+                       }
     						         }
                 5b00010: //left
     					      if (sp2_tempr <=7b0110000) {
-    						        if (sp2_blob !=2) p2_tempr.d = sp2_tempr << 1; 
+    						        if (sp2_blob !=2) {
+                          sh7.alufn = 6b000000;
+                          p2_tempr.d = sh7.shift;
+                        }
     						        }
                 5b00100: //right 
     					      if (sp2_tempr >=7b0000110) {
-    						        if (sp2_blob !=2) p2_tempr.d = sp2_tempr >> 1;
+    						        if (sp2_blob !=2) {
+                          sh7.alufn = 6b000001;
+                          p2_tempr.d = sh7.shift;
+                       }
     						         }
                 5b00001://set
                    if (sp2_blob !=2) state.d=state.SETTLE_P2;
               }
+              //sh5.a = sp1_tempc;
+              //sh7.a = sp1_tempr;
+              case(p1Btn){
+                5b10000: //up
+    					      if (sp1_tempc <= 5b01100) {
+    						        if (sp1_blob !=2) {
+                          sh5.a = sp1_tempc;
+                          sh5.alufn = 6b000000;
+                          p1_tempc.d = sh5.shift; 
+                      }
+    						         }
+                5b01000: //down
+                  if (sp1_tempc >= 5b00110) {
+    						        if (sp1_blob !=2) {
+                          sh5.a = sp1_tempc;
+                          sh5.alufn = 6b000001;
+                          p1_tempc.d = sh5.shift;
+                       }
+    						         }
+                5b00010: //left
+    					      if (sp1_tempr <=7b0110000) {
+    						        if (sp1_blob !=2) {
+                          sh7.a = sp1_tempr;
+                          sh7.alufn = 6b000000;
+                          p1_tempr.d = sh7.shift;
+                        }
+    						        }
+                5b00100: //right 
+    					      if (sp1_tempr >=7b0000110) {
+    						        if (sp1_blob !=2) {
+                          sh7.a = sp1_tempr;
+                          sh7.alufn = 6b000001;
+                          p1_tempr.d = sh7.shift;
+                       }
+    						         }
+                5b00001://set
+                   if (sp1_blob !=2) state.d=state.SETTLE_P1;
+              }
+
        state.SETTLE_P1:
                 p1_blob.d = sp1_blob + 1;
                 for (i=0;i<5;i++){
@@ -291,46 +334,77 @@ module mojo_top (
                  }
                 else state.d=state.PREP;
        state.PLAY:
-              case(p1Btn){
-                5b10000: //up
-    					      if (sp1_tempc <= 5b01000) {
-    						        if (sp1_blob !=1) p1_tempc.d = sp1_tempc << 1; 
-    						        state.d=state.PLAY; }
-                5b01000: //down
-                  if (sp1_tempc >= 5b00010) {
-    						        if (sp1_blob !=1) p1_tempc.d = sp1_tempc >> 1;
-    						        state.d=state.PLAY; }
-                5b00010: //left
-    					      if (sp1_tempr <=7b0100000) {
-    						        if (sp1_blob !=1) p1_tempr.d = sp1_tempr << 1; 
-    						        state.d=state.PLAY;}
-                5b00100: //right 
-    					      if (sp1_tempr >=7b0000010) {
-    						        if (sp1_blob !=1) p1_tempr.d = sp1_tempr >> 1;
-    						        state.d=state.PLAY; }
-                5b00001://set
-                   if (sp1_blob !=1) state.d=state.SETTLE_P1_OPP;
-              }
-        
+              sh5.a = sp2_tempc;
+              sh7.a = sp2_tempr;
               case(p2Btn){
                 5b10000: //up
     					      if (sp2_tempc <= 5b01000) {
-    						        if (sp2_blob !=1) p2_tempc.d = sp2_tempc << 1; 
-    						        state.d=state.PLAY; }
+    						        if (sp2_blob !=1) {
+                          sh5.alufn = 6b000000;
+                          p2_tempc.d = sh5.shift; 
+                      }
+    						         }
                 5b01000: //down
                   if (sp2_tempc >= 5b00010) {
-    						        if (sp2_blob !=1) p2_tempc.d = sp2_tempc >> 1;
-    						        state.d=state.PLAY; }
+    						        if (sp2_blob !=1) {
+                          sh5.alufn = 6b000001;
+                          p2_tempc.d = sh5.shift;
+                       }
+    						         }
                 5b00010: //left
     					      if (sp2_tempr <=7b0100000) {
-    						        if (sp2_blob !=1) p2_tempr.d = sp2_tempr << 1; 
-    						        state.d=state.PLAY;}
+    						        if (sp2_blob !=1) {
+                          sh7.alufn = 6b000000;
+                          p2_tempr.d = sh7.shift;
+                        }
+    						        }
                 5b00100: //right 
     					      if (sp2_tempr >=7b0000010) {
-    						        if (sp2_blob !=1) p2_tempr.d = sp2_tempr >> 1;
-    						        state.d=state.PLAY; }
+    						        if (sp2_blob !=1) {
+                          sh7.alufn = 6b000001;
+                          p2_tempr.d = sh7.shift;
+                       }
+    						         }
                 5b00001://set
                    if (sp2_blob !=1) state.d=state.SETTLE_P2_OPP;
+              }
+              //sh5.a = sp1_tempc;
+              //sh7.a = sp1_tempr;
+              case(p1Btn){
+                5b10000: //up
+    					      if (sp1_tempc <= 5b01000) {
+    						        if (sp1_blob !=1) {
+                          sh5.a = sp1_tempc;
+                          sh5.alufn = 6b000000;
+                          p1_tempc.d = sh5.shift; 
+                      }
+    						         }
+                5b01000: //down
+                  if (sp1_tempc >= 5b00010) {
+    						        if (sp1_blob !=1) {
+                          sh5.a = sp1_tempc;
+                          sh5.alufn = 6b000001;
+                          p1_tempc.d = sh5.shift;
+                       }
+    						         }
+                5b00010: //left
+    					      if (sp1_tempr <=7b0100000) {
+    						        if (sp1_blob !=1) {
+                          sh7.a = sp1_tempr;
+                          sh7.alufn = 6b000000;
+                          p1_tempr.d = sh7.shift;
+                        }
+    						        }
+                5b00100: //right 
+    					      if (sp1_tempr >=7b0000010) {
+    						        if (sp1_blob !=1) {
+                          sh7.a = sp1_tempr;
+                          sh7.alufn = 6b000001;
+                          p1_tempr.d = sh7.shift;
+                       }
+    						         }
+                5b00001://set
+                   if (sp1_blob !=2) state.d=state.SETTLE_P1_OPP;
               }
       //when p1 has chosen his position to launch attack, position is added to his attack board
       //SETTLE_P1_OPP state used to update master array for attack board

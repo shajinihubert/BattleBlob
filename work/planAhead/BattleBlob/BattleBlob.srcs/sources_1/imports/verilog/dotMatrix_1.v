@@ -69,7 +69,7 @@ module dotMatrix_1 (
             end
           end
         end
-        if (M_counter_q[8+0-:1] == 1'h1) begin
+        if (M_counter_q[12+0-:1] == 1'h1) begin
           M_row_d = ONER_row;
         end
       end
@@ -84,7 +84,7 @@ module dotMatrix_1 (
             end
           end
         end
-        if (M_counter_q[8+0-:1] == 1'h1) begin
+        if (M_counter_q[12+0-:1] == 1'h1) begin
           M_row_d = TWOG_row;
         end
       end
@@ -106,7 +106,7 @@ module dotMatrix_1 (
             end
           end
         end
-        if (M_counter_q[8+0-:1] == 1'h1) begin
+        if (M_counter_q[12+0-:1] == 1'h1) begin
           M_row_d = TWOR_row;
         end
       end
@@ -121,7 +121,7 @@ module dotMatrix_1 (
             end
           end
         end
-        if (M_counter_q[8+0-:1] == 1'h1) begin
+        if (M_counter_q[12+0-:1] == 1'h1) begin
           M_row_d = THREEG_row;
         end
       end
@@ -143,7 +143,7 @@ module dotMatrix_1 (
             end
           end
         end
-        if (M_counter_q[8+0-:1] == 1'h1) begin
+        if (M_counter_q[12+0-:1] == 1'h1) begin
           M_row_d = THREER_row;
         end
       end
@@ -158,7 +158,7 @@ module dotMatrix_1 (
             end
           end
         end
-        if (M_counter_q[8+0-:1] == 1'h1) begin
+        if (M_counter_q[12+0-:1] == 1'h1) begin
           M_row_d = FOURG_row;
         end
       end
@@ -180,7 +180,7 @@ module dotMatrix_1 (
             end
           end
         end
-        if (M_counter_q[8+0-:1] == 1'h1) begin
+        if (M_counter_q[12+0-:1] == 1'h1) begin
           M_row_d = FOURR_row;
         end
       end
@@ -195,7 +195,7 @@ module dotMatrix_1 (
             end
           end
         end
-        if (M_counter_q[8+0-:1] == 1'h1) begin
+        if (M_counter_q[12+0-:1] == 1'h1) begin
           M_row_d = FIVEG_row;
         end
       end
@@ -217,7 +217,7 @@ module dotMatrix_1 (
             end
           end
         end
-        if (M_counter_q[8+0-:1] == 1'h1) begin
+        if (M_counter_q[12+0-:1] == 1'h1) begin
           M_row_d = FIVER_row;
         end
       end
@@ -232,12 +232,12 @@ module dotMatrix_1 (
             end
           end
         end
-        if (M_counter_q[8+0-:1] == 1'h1) begin
+        if (M_counter_q[12+0-:1] == 1'h1) begin
           M_row_d = ONEG_row;
         end
       end
     endcase
-    if (M_counter_q[8+0-:1] == 1'h1) begin
+    if (M_counter_q[12+0-:1] == 1'h1) begin
       M_counter_d = 1'h0;
     end else begin
       M_counter_d = M_counter_q + 1'h1;
@@ -255,16 +255,16 @@ module dotMatrix_1 (
   
   
   always @(posedge clk) begin
+    M_row_q <= M_row_d;
+  end
+  
+  
+  always @(posedge clk) begin
     if (rst == 1'b1) begin
       M_blinker_q <= 1'h0;
     end else begin
       M_blinker_q <= M_blinker_d;
     end
-  end
-  
-  
-  always @(posedge clk) begin
-    M_row_q <= M_row_d;
   end
   
 endmodule

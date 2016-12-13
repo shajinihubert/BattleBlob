@@ -28,16 +28,16 @@ INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on
 Timing constraint: TS_clk = PERIOD TIMEGRP "clk" 50 MHz HIGH 50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 126065 paths analyzed, 3504 endpoints analyzed, 0 failing endpoints
+ 215043 paths analyzed, 3461 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is  13.662ns.
+ Minimum period is  10.366ns.
 --------------------------------------------------------------------------------
-Slack:                  6.338ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_63 (FF)
-  Destination:          M_p2sdff_q_75 (FF)
+Slack:                  9.634ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_7 (FF)
+  Destination:          M_p2_tempr_q_6 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.623ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.004ns (0.655 - 0.659)
+  Data Path Delay:      10.313ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.018ns (0.324 - 0.342)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -48,42 +48,42 @@ Slack:                  6.338ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_63 to M_p2sdff_q_75
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_7 to M_p2_tempr_q_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X3Y38.DQ       Tcko                  0.430   M_p2sdff_q[63]
-                                                       M_p2sdff_q_63
-    SLICE_X7Y50.D5       net (fanout=5)        1.510   M_p2sdff_q[63]
-    SLICE_X7Y50.D        Tilo                  0.259   M_p1odff_q[65]
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o154
-    SLICE_X3Y41.A3       net (fanout=1)        1.392   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o119
-    SLICE_X3Y41.A        Tilo                  0.259   dmP1o/Mmux_greenr122
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o157
-    SLICE_X8Y46.D3       net (fanout=1)        1.224   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o122
-    SLICE_X8Y46.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o166
-    SLICE_X8Y46.C6       net (fanout=5)        0.152   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.D3      net (fanout=18)       4.890   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310730
-                                                       M_p2sdff_q_75
+    SLICE_X6Y53.DQ       Tcko                  0.476   button_condP1right/M_ctr_q[7]
+                                                       button_condP1right/M_ctr_q_7
+    SLICE_X7Y53.C1       net (fanout=2)        0.970   button_condP1right/M_ctr_q[7]
+    SLICE_X7Y53.C        Tilo                  0.259   out1_5
+                                                       button_condP1right/out1
+    SLICE_X7Y53.A1       net (fanout=3)        0.757   out_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.D2       net (fanout=12)       1.137   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<1>5
+                                                       M_p2_tempr_q_6
     -------------------------------------------------  ---------------------------
-    Total                                     13.623ns (2.060ns logic, 11.563ns route)
-                                                       (15.1% logic, 84.9% route)
+    Total                                     10.313ns (2.106ns logic, 8.207ns route)
+                                                       (20.4% logic, 79.6% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.537ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_63 (FF)
-  Destination:          M_p2sdff_q_72 (FF)
+Slack:                  9.726ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_7 (FF)
+  Destination:          M_p1_tempr_q_4 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.424ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.004ns (0.655 - 0.659)
+  Data Path Delay:      10.123ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.116ns (0.600 - 0.716)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -94,42 +94,42 @@ Slack:                  6.537ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_63 to M_p2sdff_q_72
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_7 to M_p1_tempr_q_4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X3Y38.DQ       Tcko                  0.430   M_p2sdff_q[63]
-                                                       M_p2sdff_q_63
-    SLICE_X7Y50.D5       net (fanout=5)        1.510   M_p2sdff_q[63]
-    SLICE_X7Y50.D        Tilo                  0.259   M_p1odff_q[65]
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o154
-    SLICE_X3Y41.A3       net (fanout=1)        1.392   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o119
-    SLICE_X3Y41.A        Tilo                  0.259   dmP1o/Mmux_greenr122
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o157
-    SLICE_X8Y46.D3       net (fanout=1)        1.224   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o122
-    SLICE_X8Y46.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o166
-    SLICE_X8Y46.C6       net (fanout=5)        0.152   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.B6      net (fanout=18)       4.691   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310733
-                                                       M_p2sdff_q_72
+    SLICE_X6Y53.DQ       Tcko                  0.476   button_condP1right/M_ctr_q[7]
+                                                       button_condP1right/M_ctr_q_7
+    SLICE_X7Y53.C1       net (fanout=2)        0.970   button_condP1right/M_ctr_q[7]
+    SLICE_X7Y53.C        Tilo                  0.259   out1_5
+                                                       button_condP1right/out1
+    SLICE_X7Y53.A1       net (fanout=3)        0.757   out_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X11Y49.A2      net (fanout=2)        1.179   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X11Y49.A       Tilo                  0.259   M_p2_tempr_q[2]
+                                                       M_state_q_M_sh7_shift<1>21
+    SLICE_X13Y47.D3      net (fanout=12)       1.145   M_state_q_M_sh7_shift<1>2
+    SLICE_X13Y47.CLK     Tas                   0.373   M_p1_tempr_q[4]
+                                                       M_state_q__n3043<3>1
+                                                       M_p1_tempr_q_4
     -------------------------------------------------  ---------------------------
-    Total                                     13.424ns (2.060ns logic, 11.364ns route)
-                                                       (15.3% logic, 84.7% route)
+    Total                                     10.123ns (2.144ns logic, 7.979ns route)
+                                                       (21.2% logic, 78.8% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.581ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_63 (FF)
-  Destination:          M_p2sdff_q_66 (FF)
+Slack:                  9.759ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_7 (FF)
+  Destination:          M_p1_tempr_q_3 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.382ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.002ns (0.657 - 0.659)
+  Data Path Delay:      10.090ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.116ns (0.600 - 0.716)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -140,42 +140,42 @@ Slack:                  6.581ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_63 to M_p2sdff_q_66
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_7 to M_p1_tempr_q_3
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X3Y38.DQ       Tcko                  0.430   M_p2sdff_q[63]
-                                                       M_p2sdff_q_63
-    SLICE_X7Y50.D5       net (fanout=5)        1.510   M_p2sdff_q[63]
-    SLICE_X7Y50.D        Tilo                  0.259   M_p1odff_q[65]
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o154
-    SLICE_X3Y41.A3       net (fanout=1)        1.392   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o119
-    SLICE_X3Y41.A        Tilo                  0.259   dmP1o/Mmux_greenr122
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o157
-    SLICE_X8Y46.D3       net (fanout=1)        1.224   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o122
-    SLICE_X8Y46.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o166
-    SLICE_X8Y46.C6       net (fanout=5)        0.152   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X12Y52.B1      net (fanout=18)       4.659   Mmux__n303110221
-    SLICE_X12Y52.CLK     Tas                   0.339   M_p2sdff_q[69]
-                                                       Mmux__n310739
-                                                       M_p2sdff_q_66
+    SLICE_X6Y53.DQ       Tcko                  0.476   button_condP1right/M_ctr_q[7]
+                                                       button_condP1right/M_ctr_q_7
+    SLICE_X7Y53.C1       net (fanout=2)        0.970   button_condP1right/M_ctr_q[7]
+    SLICE_X7Y53.C        Tilo                  0.259   out1_5
+                                                       button_condP1right/out1
+    SLICE_X7Y53.A1       net (fanout=3)        0.757   out_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X11Y49.A2      net (fanout=2)        1.179   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X11Y49.A       Tilo                  0.259   M_p2_tempr_q[2]
+                                                       M_state_q_M_sh7_shift<1>21
+    SLICE_X13Y47.C3      net (fanout=12)       1.112   M_state_q_M_sh7_shift<1>2
+    SLICE_X13Y47.CLK     Tas                   0.373   M_p1_tempr_q[4]
+                                                       M_state_q__n3043<4>1
+                                                       M_p1_tempr_q_3
     -------------------------------------------------  ---------------------------
-    Total                                     13.382ns (2.050ns logic, 11.332ns route)
-                                                       (15.3% logic, 84.7% route)
+    Total                                     10.090ns (2.144ns logic, 7.946ns route)
+                                                       (21.2% logic, 78.8% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.642ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               button_condP2left/M_ctr_q_18 (FF)
-  Destination:          M_p2_tempr_q_2 (FF)
+Slack:                  9.788ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_7 (FF)
+  Destination:          M_p2_tempr_q_4 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.236ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.087ns (0.601 - 0.688)
+  Data Path Delay:      10.159ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.018ns (0.324 - 0.342)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -186,42 +186,42 @@ Slack:                  6.642ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: button_condP2left/M_ctr_q_18 to M_p2_tempr_q_2
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_7 to M_p2_tempr_q_4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y63.CQ      Tcko                  0.476   button_condP2left/M_ctr_q[19]
-                                                       button_condP2left/M_ctr_q_18
-    SLICE_X16Y60.C1      net (fanout=2)        1.196   button_condP2left/M_ctr_q[18]
-    SLICE_X16Y60.C       Tilo                  0.255   out1_1
-                                                       button_condP2left/out2
-    SLICE_X15Y60.A3      net (fanout=2)        0.569   out1_1
-    SLICE_X15Y60.A       Tilo                  0.259   M_last_q_1
-                                                       button_condP2left/out4
-    SLICE_X13Y34.B3      net (fanout=9)        3.290   M_button_condP2left_out
-    SLICE_X13Y34.B       Tilo                  0.259   M_edge_detectorP2up_out[0]_M_p2_tempr_q[6]_select_277_OUT<1>1
-                                                       M_state_q_FSM_FFd3-In11
-    SLICE_X23Y50.D1      net (fanout=6)        2.743   M_state_q_FSM_FFd3-In1
-    SLICE_X23Y50.D       Tilo                  0.259   M_state_q__n3081[5]
-                                                       M_state_q__n3081<5>1
-    SLICE_X14Y35.CX      net (fanout=1)        1.785   M_state_q__n3081[5]
-    SLICE_X14Y35.CMUX    Tcxc                  0.192   N480
-                                                       M_state_q__n3081<5>2_SW0
-    SLICE_X12Y32.A2      net (fanout=1)        1.614   N653
-    SLICE_X12Y32.CLK     Tas                   0.339   M_p2_tempr_q[4]
-                                                       M_state_q__n3081<5>4
-                                                       M_p2_tempr_q_2
+    SLICE_X6Y53.DQ       Tcko                  0.476   button_condP1right/M_ctr_q[7]
+                                                       button_condP1right/M_ctr_q_7
+    SLICE_X7Y53.C1       net (fanout=2)        0.970   button_condP1right/M_ctr_q[7]
+    SLICE_X7Y53.C        Tilo                  0.259   out1_5
+                                                       button_condP1right/out1
+    SLICE_X7Y53.A1       net (fanout=3)        0.757   out_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.B3       net (fanout=12)       0.983   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<3>1
+                                                       M_p2_tempr_q_4
     -------------------------------------------------  ---------------------------
-    Total                                     13.236ns (2.039ns logic, 11.197ns route)
-                                                       (15.4% logic, 84.6% route)
+    Total                                     10.159ns (2.106ns logic, 8.053ns route)
+                                                       (20.7% logic, 79.3% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.658ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_64 (FF)
-  Destination:          M_p2sdff_q_75 (FF)
+Slack:                  9.850ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_7 (FF)
+  Destination:          M_p1_tempr_q_4 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.288ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.019ns (0.288 - 0.307)
+  Data Path Delay:      9.999ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.116ns (0.600 - 0.716)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -232,42 +232,42 @@ Slack:                  6.658ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_64 to M_p2sdff_q_75
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_7 to M_p1_tempr_q_4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X12Y52.AQ      Tcko                  0.525   M_p2sdff_q[69]
-                                                       M_p2sdff_q_64
-    SLICE_X7Y50.D3       net (fanout=6)        1.080   M_p2sdff_q[64]
-    SLICE_X7Y50.D        Tilo                  0.259   M_p1odff_q[65]
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o154
-    SLICE_X3Y41.A3       net (fanout=1)        1.392   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o119
-    SLICE_X3Y41.A        Tilo                  0.259   dmP1o/Mmux_greenr122
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o157
-    SLICE_X8Y46.D3       net (fanout=1)        1.224   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o122
-    SLICE_X8Y46.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o166
-    SLICE_X8Y46.C6       net (fanout=5)        0.152   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.D3      net (fanout=18)       4.890   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310730
-                                                       M_p2sdff_q_75
+    SLICE_X6Y53.DQ       Tcko                  0.476   button_condP1right/M_ctr_q[7]
+                                                       button_condP1right/M_ctr_q_7
+    SLICE_X7Y53.C1       net (fanout=2)        0.970   button_condP1right/M_ctr_q[7]
+    SLICE_X7Y53.C        Tilo                  0.259   out1_5
+                                                       button_condP1right/out1
+    SLICE_X7Y53.A1       net (fanout=3)        0.757   out_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X13Y47.D1      net (fanout=12)       0.789   M_state_q_M_sh7_shift<1>1
+    SLICE_X13Y47.CLK     Tas                   0.373   M_p1_tempr_q[4]
+                                                       M_state_q__n3043<3>1
+                                                       M_p1_tempr_q_4
     -------------------------------------------------  ---------------------------
-    Total                                     13.288ns (2.155ns logic, 11.133ns route)
-                                                       (16.2% logic, 83.8% route)
+    Total                                      9.999ns (2.140ns logic, 7.859ns route)
+                                                       (21.4% logic, 78.6% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.689ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_36 (FF)
-  Destination:          M_p2sdff_q_75 (FF)
+Slack:                  9.879ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_7 (FF)
+  Destination:          M_p1_tempr_q_1 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.274ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.002ns (0.655 - 0.657)
+  Data Path Delay:      10.032ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.054ns (0.662 - 0.716)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -278,42 +278,42 @@ Slack:                  6.689ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_36 to M_p2sdff_q_75
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_7 to M_p1_tempr_q_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X1Y39.AQ       Tcko                  0.430   M_p2sdff_q[40]
-                                                       M_p2sdff_q_36
-    SLICE_X4Y42.D1       net (fanout=5)        1.711   M_p2sdff_q[36]
-    SLICE_X4Y42.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o110
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o145
-    SLICE_X4Y42.C4       net (fanout=1)        0.456   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o110
-    SLICE_X4Y42.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o110
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o146
-    SLICE_X8Y46.A2       net (fanout=1)        1.222   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o111
-    SLICE_X8Y46.A        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o147
-    SLICE_X8Y46.C1       net (fanout=5)        0.549   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o112
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.D3      net (fanout=18)       4.890   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310730
-                                                       M_p2sdff_q_75
+    SLICE_X6Y53.DQ       Tcko                  0.476   button_condP1right/M_ctr_q[7]
+                                                       button_condP1right/M_ctr_q_7
+    SLICE_X7Y53.C1       net (fanout=2)        0.970   button_condP1right/M_ctr_q[7]
+    SLICE_X7Y53.C        Tilo                  0.259   out1_5
+                                                       button_condP1right/out1
+    SLICE_X7Y53.A1       net (fanout=3)        0.757   out_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X11Y49.A2      net (fanout=2)        1.179   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X11Y49.A       Tilo                  0.259   M_p2_tempr_q[2]
+                                                       M_state_q_M_sh7_shift<1>21
+    SLICE_X13Y48.C2      net (fanout=12)       1.054   M_state_q_M_sh7_shift<1>2
+    SLICE_X13Y48.CLK     Tas                   0.373   M_p1_tempr_q[1]
+                                                       M_state_q__n3043<6>1
+                                                       M_p1_tempr_q_1
     -------------------------------------------------  ---------------------------
-    Total                                     13.274ns (2.051ns logic, 11.223ns route)
-                                                       (15.5% logic, 84.5% route)
+    Total                                     10.032ns (2.144ns logic, 7.888ns route)
+                                                       (21.4% logic, 78.6% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.731ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               button_condP2left/M_ctr_q_5 (FF)
-  Destination:          M_p2_tempr_q_2 (FF)
+Slack:                  9.879ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_13 (FF)
+  Destination:          M_p2_tempr_q_6 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.150ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.084ns (0.601 - 0.685)
+  Data Path Delay:      10.073ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.013ns (0.324 - 0.337)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -324,42 +324,42 @@ Slack:                  6.731ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: button_condP2left/M_ctr_q_5 to M_p2_tempr_q_2
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_13 to M_p2_tempr_q_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y60.BQ      Tcko                  0.476   button_condP2left/M_ctr_q[7]
-                                                       button_condP2left/M_ctr_q_5
-    SLICE_X16Y60.A2      net (fanout=2)        0.931   button_condP2left/M_ctr_q[5]
-    SLICE_X16Y60.A       Tilo                  0.254   out1_1
-                                                       button_condP2left/out1
-    SLICE_X15Y60.A1      net (fanout=2)        0.749   out_1
-    SLICE_X15Y60.A       Tilo                  0.259   M_last_q_1
-                                                       button_condP2left/out4
-    SLICE_X13Y34.B3      net (fanout=9)        3.290   M_button_condP2left_out
-    SLICE_X13Y34.B       Tilo                  0.259   M_edge_detectorP2up_out[0]_M_p2_tempr_q[6]_select_277_OUT<1>1
-                                                       M_state_q_FSM_FFd3-In11
-    SLICE_X23Y50.D1      net (fanout=6)        2.743   M_state_q_FSM_FFd3-In1
-    SLICE_X23Y50.D       Tilo                  0.259   M_state_q__n3081[5]
-                                                       M_state_q__n3081<5>1
-    SLICE_X14Y35.CX      net (fanout=1)        1.785   M_state_q__n3081[5]
-    SLICE_X14Y35.CMUX    Tcxc                  0.192   N480
-                                                       M_state_q__n3081<5>2_SW0
-    SLICE_X12Y32.A2      net (fanout=1)        1.614   N653
-    SLICE_X12Y32.CLK     Tas                   0.339   M_p2_tempr_q[4]
-                                                       M_state_q__n3081<5>4
-                                                       M_p2_tempr_q_2
+    SLICE_X6Y55.BQ       Tcko                  0.476   button_condP1right/M_ctr_q[15]
+                                                       button_condP1right/M_ctr_q_13
+    SLICE_X5Y53.B2       net (fanout=2)        0.972   button_condP1right/M_ctr_q[13]
+    SLICE_X5Y53.B        Tilo                  0.259   edge_detectorP1right/M_last_q
+                                                       button_condP1right/out3
+    SLICE_X7Y53.A4       net (fanout=3)        0.515   out2_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.D2       net (fanout=12)       1.137   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<1>5
+                                                       M_p2_tempr_q_6
     -------------------------------------------------  ---------------------------
-    Total                                     13.150ns (2.038ns logic, 11.112ns route)
-                                                       (15.5% logic, 84.5% route)
+    Total                                     10.073ns (2.106ns logic, 7.967ns route)
+                                                       (20.9% logic, 79.1% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.774ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p1odff_q_24 (FF)
-  Destination:          M_p2sdff_q_75 (FF)
+Slack:                  9.888ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_7 (FF)
+  Destination:          M_p1_tempr_q_0 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.184ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.007ns (0.188 - 0.195)
+  Data Path Delay:      10.023ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.054ns (0.662 - 0.716)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -370,42 +370,42 @@ Slack:                  6.774ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p1odff_q_24 to M_p2sdff_q_75
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_7 to M_p1_tempr_q_0
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y55.AQ      Tcko                  0.476   M_p1odff_q[26]
-                                                       M_p1odff_q_24
-    SLICE_X5Y49.D4       net (fanout=4)        2.031   M_p1odff_q[24]
-    SLICE_X5Y49.D        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o16
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o141
-    SLICE_X5Y49.C6       net (fanout=1)        0.143   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o16
-    SLICE_X5Y49.C        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o16
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o142
-    SLICE_X8Y46.A1       net (fanout=1)        1.070   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o17
-    SLICE_X8Y46.A        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o147
-    SLICE_X8Y46.C1       net (fanout=5)        0.549   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o112
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.D3      net (fanout=18)       4.890   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310730
-                                                       M_p2sdff_q_75
+    SLICE_X6Y53.DQ       Tcko                  0.476   button_condP1right/M_ctr_q[7]
+                                                       button_condP1right/M_ctr_q_7
+    SLICE_X7Y53.C1       net (fanout=2)        0.970   button_condP1right/M_ctr_q[7]
+    SLICE_X7Y53.C        Tilo                  0.259   out1_5
+                                                       button_condP1right/out1
+    SLICE_X7Y53.A1       net (fanout=3)        0.757   out_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X11Y49.A2      net (fanout=2)        1.179   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X11Y49.A       Tilo                  0.259   M_p2_tempr_q[2]
+                                                       M_state_q_M_sh7_shift<1>21
+    SLICE_X13Y48.B1      net (fanout=12)       1.045   M_state_q_M_sh7_shift<1>2
+    SLICE_X13Y48.CLK     Tas                   0.373   M_p1_tempr_q[1]
+                                                       M_state_q__n3043<7>1
+                                                       M_p1_tempr_q_0
     -------------------------------------------------  ---------------------------
-    Total                                     13.184ns (2.106ns logic, 11.078ns route)
-                                                       (16.0% logic, 84.0% route)
+    Total                                     10.023ns (2.144ns logic, 7.879ns route)
+                                                       (21.4% logic, 78.6% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.853ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               button_condP2left/M_ctr_q_2 (FF)
-  Destination:          M_p2_tempr_q_2 (FF)
+Slack:                  9.898ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_7 (FF)
+  Destination:          M_p2_tempr_q_3 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.031ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.081ns (0.601 - 0.682)
+  Data Path Delay:      10.049ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.018ns (0.324 - 0.342)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -416,42 +416,42 @@ Slack:                  6.853ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: button_condP2left/M_ctr_q_2 to M_p2_tempr_q_2
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_7 to M_p2_tempr_q_3
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y59.CQ      Tcko                  0.476   button_condP2left/M_ctr_q[3]
-                                                       button_condP2left/M_ctr_q_2
-    SLICE_X16Y60.A1      net (fanout=2)        0.812   button_condP2left/M_ctr_q[2]
-    SLICE_X16Y60.A       Tilo                  0.254   out1_1
-                                                       button_condP2left/out1
-    SLICE_X15Y60.A1      net (fanout=2)        0.749   out_1
-    SLICE_X15Y60.A       Tilo                  0.259   M_last_q_1
-                                                       button_condP2left/out4
-    SLICE_X13Y34.B3      net (fanout=9)        3.290   M_button_condP2left_out
-    SLICE_X13Y34.B       Tilo                  0.259   M_edge_detectorP2up_out[0]_M_p2_tempr_q[6]_select_277_OUT<1>1
-                                                       M_state_q_FSM_FFd3-In11
-    SLICE_X23Y50.D1      net (fanout=6)        2.743   M_state_q_FSM_FFd3-In1
-    SLICE_X23Y50.D       Tilo                  0.259   M_state_q__n3081[5]
-                                                       M_state_q__n3081<5>1
-    SLICE_X14Y35.CX      net (fanout=1)        1.785   M_state_q__n3081[5]
-    SLICE_X14Y35.CMUX    Tcxc                  0.192   N480
-                                                       M_state_q__n3081<5>2_SW0
-    SLICE_X12Y32.A2      net (fanout=1)        1.614   N653
-    SLICE_X12Y32.CLK     Tas                   0.339   M_p2_tempr_q[4]
-                                                       M_state_q__n3081<5>4
-                                                       M_p2_tempr_q_2
+    SLICE_X6Y53.DQ       Tcko                  0.476   button_condP1right/M_ctr_q[7]
+                                                       button_condP1right/M_ctr_q_7
+    SLICE_X7Y53.C1       net (fanout=2)        0.970   button_condP1right/M_ctr_q[7]
+    SLICE_X7Y53.C        Tilo                  0.259   out1_5
+                                                       button_condP1right/out1
+    SLICE_X7Y53.A1       net (fanout=3)        0.757   out_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.A4       net (fanout=12)       0.873   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<4>1
+                                                       M_p2_tempr_q_3
     -------------------------------------------------  ---------------------------
-    Total                                     13.031ns (2.038ns logic, 10.993ns route)
-                                                       (15.6% logic, 84.4% route)
+    Total                                     10.049ns (2.106ns logic, 7.943ns route)
+                                                       (21.0% logic, 79.0% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.857ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_64 (FF)
-  Destination:          M_p2sdff_q_72 (FF)
+Slack:                  9.901ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_12 (FF)
+  Destination:          M_p2_tempr_q_6 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.089ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.019ns (0.288 - 0.307)
+  Data Path Delay:      10.051ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.013ns (0.324 - 0.337)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -462,42 +462,42 @@ Slack:                  6.857ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_64 to M_p2sdff_q_72
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_12 to M_p2_tempr_q_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X12Y52.AQ      Tcko                  0.525   M_p2sdff_q[69]
-                                                       M_p2sdff_q_64
-    SLICE_X7Y50.D3       net (fanout=6)        1.080   M_p2sdff_q[64]
-    SLICE_X7Y50.D        Tilo                  0.259   M_p1odff_q[65]
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o154
-    SLICE_X3Y41.A3       net (fanout=1)        1.392   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o119
-    SLICE_X3Y41.A        Tilo                  0.259   dmP1o/Mmux_greenr122
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o157
-    SLICE_X8Y46.D3       net (fanout=1)        1.224   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o122
-    SLICE_X8Y46.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o166
-    SLICE_X8Y46.C6       net (fanout=5)        0.152   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.B6      net (fanout=18)       4.691   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310733
-                                                       M_p2sdff_q_72
+    SLICE_X6Y55.AQ       Tcko                  0.476   button_condP1right/M_ctr_q[15]
+                                                       button_condP1right/M_ctr_q_12
+    SLICE_X5Y53.B1       net (fanout=2)        0.950   button_condP1right/M_ctr_q[12]
+    SLICE_X5Y53.B        Tilo                  0.259   edge_detectorP1right/M_last_q
+                                                       button_condP1right/out3
+    SLICE_X7Y53.A4       net (fanout=3)        0.515   out2_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.D2       net (fanout=12)       1.137   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<1>5
+                                                       M_p2_tempr_q_6
     -------------------------------------------------  ---------------------------
-    Total                                     13.089ns (2.155ns logic, 10.934ns route)
-                                                       (16.5% logic, 83.5% route)
+    Total                                     10.051ns (2.106ns logic, 7.945ns route)
+                                                       (21.0% logic, 79.0% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.867ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               button_condP2left/M_ctr_q_19 (FF)
-  Destination:          M_p2_tempr_q_2 (FF)
+Slack:                  9.928ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1enter/M_ctr_q_6 (FF)
+  Destination:          M_p2_tempr_q_6 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.011ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.087ns (0.601 - 0.688)
+  Data Path Delay:      10.029ns (Levels of Logic = 7)
+  Clock Path Skew:      -0.008ns (0.324 - 0.332)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -508,42 +508,45 @@ Slack:                  6.867ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: button_condP2left/M_ctr_q_19 to M_p2_tempr_q_2
+  Maximum Data Path at Slow Process Corner: button_condP1enter/M_ctr_q_6 to M_p2_tempr_q_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y63.DQ      Tcko                  0.476   button_condP2left/M_ctr_q[19]
-                                                       button_condP2left/M_ctr_q_19
-    SLICE_X16Y60.C2      net (fanout=2)        0.971   button_condP2left/M_ctr_q[19]
-    SLICE_X16Y60.C       Tilo                  0.255   out1_1
-                                                       button_condP2left/out2
-    SLICE_X15Y60.A3      net (fanout=2)        0.569   out1_1
-    SLICE_X15Y60.A       Tilo                  0.259   M_last_q_1
-                                                       button_condP2left/out4
-    SLICE_X13Y34.B3      net (fanout=9)        3.290   M_button_condP2left_out
-    SLICE_X13Y34.B       Tilo                  0.259   M_edge_detectorP2up_out[0]_M_p2_tempr_q[6]_select_277_OUT<1>1
-                                                       M_state_q_FSM_FFd3-In11
-    SLICE_X23Y50.D1      net (fanout=6)        2.743   M_state_q_FSM_FFd3-In1
-    SLICE_X23Y50.D       Tilo                  0.259   M_state_q__n3081[5]
-                                                       M_state_q__n3081<5>1
-    SLICE_X14Y35.CX      net (fanout=1)        1.785   M_state_q__n3081[5]
-    SLICE_X14Y35.CMUX    Tcxc                  0.192   N480
-                                                       M_state_q__n3081<5>2_SW0
-    SLICE_X12Y32.A2      net (fanout=1)        1.614   N653
-    SLICE_X12Y32.CLK     Tas                   0.339   M_p2_tempr_q[4]
-                                                       M_state_q__n3081<5>4
-                                                       M_p2_tempr_q_2
+    SLICE_X8Y57.CQ       Tcko                  0.525   button_condP1enter/M_ctr_q[7]
+                                                       button_condP1enter/M_ctr_q_6
+    SLICE_X9Y59.C1       net (fanout=2)        0.950   button_condP1enter/M_ctr_q[6]
+    SLICE_X9Y59.C        Tilo                  0.259   out1_4
+                                                       button_condP1enter/out1
+    SLICE_X9Y59.A2       net (fanout=3)        0.549   out_4
+    SLICE_X9Y59.A        Tilo                  0.259   out1_4
+                                                       edge_detectorP1enter/out1
+    SLICE_X13Y50.A1      net (fanout=13)       2.501   M_edge_detectorP1enter_out
+    SLICE_X13Y50.A       Tilo                  0.259   M_state_q_M_sh7_shift<3>1
+                                                       M_edge_detectorP1up_out[0]_GND_1_o_equal_313_o<0>1
+    SLICE_X13Y52.D3      net (fanout=9)        0.657   M_edge_detectorP1up_out[0]_GND_1_o_equal_313_o
+    SLICE_X13Y52.D       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+    SLICE_X13Y52.C5      net (fanout=1)        0.406   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.D2       net (fanout=12)       1.137   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<1>5
+                                                       M_p2_tempr_q_6
     -------------------------------------------------  ---------------------------
-    Total                                     13.011ns (2.039ns logic, 10.972ns route)
-                                                       (15.7% logic, 84.3% route)
+    Total                                     10.029ns (2.414ns logic, 7.615ns route)
+                                                       (24.1% logic, 75.9% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.888ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_36 (FF)
-  Destination:          M_p2sdff_q_72 (FF)
+Slack:                  9.967ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1enter/M_ctr_q_6 (FF)
+  Destination:          M_p2_tempr_q_6 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.075ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.002ns (0.655 - 0.657)
+  Data Path Delay:      9.990ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.008ns (0.324 - 0.332)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -554,42 +557,42 @@ Slack:                  6.888ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_36 to M_p2sdff_q_72
+  Maximum Data Path at Slow Process Corner: button_condP1enter/M_ctr_q_6 to M_p2_tempr_q_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X1Y39.AQ       Tcko                  0.430   M_p2sdff_q[40]
-                                                       M_p2sdff_q_36
-    SLICE_X4Y42.D1       net (fanout=5)        1.711   M_p2sdff_q[36]
-    SLICE_X4Y42.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o110
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o145
-    SLICE_X4Y42.C4       net (fanout=1)        0.456   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o110
-    SLICE_X4Y42.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o110
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o146
-    SLICE_X8Y46.A2       net (fanout=1)        1.222   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o111
-    SLICE_X8Y46.A        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o147
-    SLICE_X8Y46.C1       net (fanout=5)        0.549   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o112
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.B6      net (fanout=18)       4.691   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310733
-                                                       M_p2sdff_q_72
+    SLICE_X8Y57.CQ       Tcko                  0.525   button_condP1enter/M_ctr_q[7]
+                                                       button_condP1enter/M_ctr_q_6
+    SLICE_X9Y59.C1       net (fanout=2)        0.950   button_condP1enter/M_ctr_q[6]
+    SLICE_X9Y59.C        Tilo                  0.259   out1_4
+                                                       button_condP1enter/out1
+    SLICE_X9Y59.A2       net (fanout=3)        0.549   out_4
+    SLICE_X9Y59.A        Tilo                  0.259   out1_4
+                                                       edge_detectorP1enter/out1
+    SLICE_X11Y47.D4      net (fanout=13)       2.174   M_edge_detectorP1enter_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.D2       net (fanout=12)       1.137   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<1>5
+                                                       M_p2_tempr_q_6
     -------------------------------------------------  ---------------------------
-    Total                                     13.075ns (2.051ns logic, 11.024ns route)
-                                                       (15.7% logic, 84.3% route)
+    Total                                      9.990ns (2.155ns logic, 7.835ns route)
+                                                       (21.6% logic, 78.4% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.918ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_64 (FF)
-  Destination:          M_p2sdff_q_66 (FF)
+Slack:                  9.971ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1enter/M_ctr_q_7 (FF)
+  Destination:          M_p2_tempr_q_6 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.047ns (Levels of Logic = 6)
-  Clock Path Skew:      0.000ns
+  Data Path Delay:      9.986ns (Levels of Logic = 7)
+  Clock Path Skew:      -0.008ns (0.324 - 0.332)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -600,42 +603,45 @@ Slack:                  6.918ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_64 to M_p2sdff_q_66
+  Maximum Data Path at Slow Process Corner: button_condP1enter/M_ctr_q_7 to M_p2_tempr_q_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X12Y52.AQ      Tcko                  0.525   M_p2sdff_q[69]
-                                                       M_p2sdff_q_64
-    SLICE_X7Y50.D3       net (fanout=6)        1.080   M_p2sdff_q[64]
-    SLICE_X7Y50.D        Tilo                  0.259   M_p1odff_q[65]
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o154
-    SLICE_X3Y41.A3       net (fanout=1)        1.392   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o119
-    SLICE_X3Y41.A        Tilo                  0.259   dmP1o/Mmux_greenr122
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o157
-    SLICE_X8Y46.D3       net (fanout=1)        1.224   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o122
-    SLICE_X8Y46.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o166
-    SLICE_X8Y46.C6       net (fanout=5)        0.152   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X12Y52.B1      net (fanout=18)       4.659   Mmux__n303110221
-    SLICE_X12Y52.CLK     Tas                   0.339   M_p2sdff_q[69]
-                                                       Mmux__n310739
-                                                       M_p2sdff_q_66
+    SLICE_X8Y57.DQ       Tcko                  0.525   button_condP1enter/M_ctr_q[7]
+                                                       button_condP1enter/M_ctr_q_7
+    SLICE_X9Y59.C2       net (fanout=2)        0.907   button_condP1enter/M_ctr_q[7]
+    SLICE_X9Y59.C        Tilo                  0.259   out1_4
+                                                       button_condP1enter/out1
+    SLICE_X9Y59.A2       net (fanout=3)        0.549   out_4
+    SLICE_X9Y59.A        Tilo                  0.259   out1_4
+                                                       edge_detectorP1enter/out1
+    SLICE_X13Y50.A1      net (fanout=13)       2.501   M_edge_detectorP1enter_out
+    SLICE_X13Y50.A       Tilo                  0.259   M_state_q_M_sh7_shift<3>1
+                                                       M_edge_detectorP1up_out[0]_GND_1_o_equal_313_o<0>1
+    SLICE_X13Y52.D3      net (fanout=9)        0.657   M_edge_detectorP1up_out[0]_GND_1_o_equal_313_o
+    SLICE_X13Y52.D       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+    SLICE_X13Y52.C5      net (fanout=1)        0.406   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.D2       net (fanout=12)       1.137   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<1>5
+                                                       M_p2_tempr_q_6
     -------------------------------------------------  ---------------------------
-    Total                                     13.047ns (2.145ns logic, 10.902ns route)
-                                                       (16.4% logic, 83.6% route)
+    Total                                      9.986ns (2.414ns logic, 7.572ns route)
+                                                       (24.2% logic, 75.8% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.932ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_36 (FF)
-  Destination:          M_p2sdff_q_66 (FF)
+Slack:                  9.971ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_13 (FF)
+  Destination:          M_p1_tempr_q_4 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.033ns (Levels of Logic = 6)
-  Clock Path Skew:      0.000ns
+  Data Path Delay:      9.883ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.111ns (0.600 - 0.711)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -646,42 +652,42 @@ Slack:                  6.932ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_36 to M_p2sdff_q_66
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_13 to M_p1_tempr_q_4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X1Y39.AQ       Tcko                  0.430   M_p2sdff_q[40]
-                                                       M_p2sdff_q_36
-    SLICE_X4Y42.D1       net (fanout=5)        1.711   M_p2sdff_q[36]
-    SLICE_X4Y42.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o110
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o145
-    SLICE_X4Y42.C4       net (fanout=1)        0.456   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o110
-    SLICE_X4Y42.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o110
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o146
-    SLICE_X8Y46.A2       net (fanout=1)        1.222   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o111
-    SLICE_X8Y46.A        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o147
-    SLICE_X8Y46.C1       net (fanout=5)        0.549   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o112
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X12Y52.B1      net (fanout=18)       4.659   Mmux__n303110221
-    SLICE_X12Y52.CLK     Tas                   0.339   M_p2sdff_q[69]
-                                                       Mmux__n310739
-                                                       M_p2sdff_q_66
+    SLICE_X6Y55.BQ       Tcko                  0.476   button_condP1right/M_ctr_q[15]
+                                                       button_condP1right/M_ctr_q_13
+    SLICE_X5Y53.B2       net (fanout=2)        0.972   button_condP1right/M_ctr_q[13]
+    SLICE_X5Y53.B        Tilo                  0.259   edge_detectorP1right/M_last_q
+                                                       button_condP1right/out3
+    SLICE_X7Y53.A4       net (fanout=3)        0.515   out2_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X11Y49.A2      net (fanout=2)        1.179   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X11Y49.A       Tilo                  0.259   M_p2_tempr_q[2]
+                                                       M_state_q_M_sh7_shift<1>21
+    SLICE_X13Y47.D3      net (fanout=12)       1.145   M_state_q_M_sh7_shift<1>2
+    SLICE_X13Y47.CLK     Tas                   0.373   M_p1_tempr_q[4]
+                                                       M_state_q__n3043<3>1
+                                                       M_p1_tempr_q_4
     -------------------------------------------------  ---------------------------
-    Total                                     13.033ns (2.041ns logic, 10.992ns route)
-                                                       (15.7% logic, 84.3% route)
+    Total                                      9.883ns (2.144ns logic, 7.739ns route)
+                                                       (21.7% logic, 78.3% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.939ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_49 (FF)
-  Destination:          M_p2sdff_q_75 (FF)
+Slack:                  9.974ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_7 (FF)
+  Destination:          M_p1_tempr_q_2 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.014ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.012ns (0.655 - 0.667)
+  Data Path Delay:      9.875ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.116ns (0.600 - 0.716)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -692,42 +698,42 @@ Slack:                  6.939ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_49 to M_p2sdff_q_75
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_7 to M_p1_tempr_q_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X2Y45.BQ       Tcko                  0.476   M_p2sdff_q[51]
-                                                       M_p2sdff_q_49
-    SLICE_X8Y53.D3       net (fanout=6)        1.692   M_p2sdff_q[49]
-    SLICE_X8Y53.D        Tilo                  0.254   M_p1odff_q[50]
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o148
-    SLICE_X9Y49.A3       net (fanout=1)        0.788   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o113
-    SLICE_X9Y49.A        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o116
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o152
-    SLICE_X8Y46.D1       net (fanout=1)        0.996   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o117
-    SLICE_X8Y46.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o166
-    SLICE_X8Y46.C6       net (fanout=5)        0.152   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.D3      net (fanout=18)       4.890   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310730
-                                                       M_p2sdff_q_75
+    SLICE_X6Y53.DQ       Tcko                  0.476   button_condP1right/M_ctr_q[7]
+                                                       button_condP1right/M_ctr_q_7
+    SLICE_X7Y53.C1       net (fanout=2)        0.970   button_condP1right/M_ctr_q[7]
+    SLICE_X7Y53.C        Tilo                  0.259   out1_5
+                                                       button_condP1right/out1
+    SLICE_X7Y53.A1       net (fanout=3)        0.757   out_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X11Y49.A2      net (fanout=2)        1.179   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X11Y49.A       Tilo                  0.259   M_p2_tempr_q[2]
+                                                       M_state_q_M_sh7_shift<1>21
+    SLICE_X13Y47.B6      net (fanout=12)       0.897   M_state_q_M_sh7_shift<1>2
+    SLICE_X13Y47.CLK     Tas                   0.373   M_p1_tempr_q[4]
+                                                       M_state_q__n3043<5>1
+                                                       M_p1_tempr_q_2
     -------------------------------------------------  ---------------------------
-    Total                                     13.014ns (2.101ns logic, 10.913ns route)
-                                                       (16.1% logic, 83.9% route)
+    Total                                      9.875ns (2.144ns logic, 7.731ns route)
+                                                       (21.7% logic, 78.3% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.947ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_4 (FF)
-  Destination:          M_p2sdff_q_75 (FF)
+Slack:                  9.993ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_12 (FF)
+  Destination:          M_p1_tempr_q_4 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.969ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.049ns (0.655 - 0.704)
+  Data Path Delay:      9.861ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.111ns (0.600 - 0.711)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -738,42 +744,42 @@ Slack:                  6.947ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_4 to M_p2sdff_q_75
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_12 to M_p1_tempr_q_4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y55.DQ       Tcko                  0.430   M_p2sdff_q[4]
-                                                       M_p2sdff_q_4
-    SLICE_X5Y46.C1       net (fanout=6)        1.572   M_p2sdff_q[4]
-    SLICE_X5Y46.C        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o18
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o143
-    SLICE_X5Y46.B1       net (fanout=1)        0.705   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o18
-    SLICE_X5Y46.B        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o18
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o144
-    SLICE_X8Y46.A6       net (fanout=1)        0.798   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o19
-    SLICE_X8Y46.A        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o147
-    SLICE_X8Y46.C1       net (fanout=5)        0.549   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o112
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.D3      net (fanout=18)       4.890   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310730
-                                                       M_p2sdff_q_75
+    SLICE_X6Y55.AQ       Tcko                  0.476   button_condP1right/M_ctr_q[15]
+                                                       button_condP1right/M_ctr_q_12
+    SLICE_X5Y53.B1       net (fanout=2)        0.950   button_condP1right/M_ctr_q[12]
+    SLICE_X5Y53.B        Tilo                  0.259   edge_detectorP1right/M_last_q
+                                                       button_condP1right/out3
+    SLICE_X7Y53.A4       net (fanout=3)        0.515   out2_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X11Y49.A2      net (fanout=2)        1.179   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X11Y49.A       Tilo                  0.259   M_p2_tempr_q[2]
+                                                       M_state_q_M_sh7_shift<1>21
+    SLICE_X13Y47.D3      net (fanout=12)       1.145   M_state_q_M_sh7_shift<1>2
+    SLICE_X13Y47.CLK     Tas                   0.373   M_p1_tempr_q[4]
+                                                       M_state_q__n3043<3>1
+                                                       M_p1_tempr_q_4
     -------------------------------------------------  ---------------------------
-    Total                                     12.969ns (2.060ns logic, 10.909ns route)
-                                                       (15.9% logic, 84.1% route)
+    Total                                      9.861ns (2.144ns logic, 7.717ns route)
+                                                       (21.7% logic, 78.3% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.972ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_63 (FF)
-  Destination:          M_p2sdff_q_69 (FF)
+Slack:                  9.994ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_7 (FF)
+  Destination:          M_p2_tempr_q_5 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.991ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.002ns (0.657 - 0.659)
+  Data Path Delay:      9.953ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.018ns (0.324 - 0.342)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -784,42 +790,42 @@ Slack:                  6.972ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_63 to M_p2sdff_q_69
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_7 to M_p2_tempr_q_5
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X3Y38.DQ       Tcko                  0.430   M_p2sdff_q[63]
-                                                       M_p2sdff_q_63
-    SLICE_X7Y50.D5       net (fanout=5)        1.510   M_p2sdff_q[63]
-    SLICE_X7Y50.D        Tilo                  0.259   M_p1odff_q[65]
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o154
-    SLICE_X3Y41.A3       net (fanout=1)        1.392   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o119
-    SLICE_X3Y41.A        Tilo                  0.259   dmP1o/Mmux_greenr122
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o157
-    SLICE_X8Y46.D3       net (fanout=1)        1.224   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o122
-    SLICE_X8Y46.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o166
-    SLICE_X8Y46.C6       net (fanout=5)        0.152   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X12Y52.D6      net (fanout=18)       4.268   Mmux__n303110221
-    SLICE_X12Y52.CLK     Tas                   0.339   M_p2sdff_q[69]
-                                                       Mmux__n310736
-                                                       M_p2sdff_q_69
+    SLICE_X6Y53.DQ       Tcko                  0.476   button_condP1right/M_ctr_q[7]
+                                                       button_condP1right/M_ctr_q_7
+    SLICE_X7Y53.C1       net (fanout=2)        0.970   button_condP1right/M_ctr_q[7]
+    SLICE_X7Y53.C        Tilo                  0.259   out1_5
+                                                       button_condP1right/out1
+    SLICE_X7Y53.A1       net (fanout=3)        0.757   out_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.C5       net (fanout=12)       0.777   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<2>1
+                                                       M_p2_tempr_q_5
     -------------------------------------------------  ---------------------------
-    Total                                     12.991ns (2.050ns logic, 10.941ns route)
-                                                       (15.8% logic, 84.2% route)
+    Total                                      9.953ns (2.106ns logic, 7.847ns route)
+                                                       (21.2% logic, 78.8% route)
 
 --------------------------------------------------------------------------------
-Slack:                  6.973ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p1odff_q_24 (FF)
-  Destination:          M_p2sdff_q_72 (FF)
+Slack:                  10.004ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_13 (FF)
+  Destination:          M_p1_tempr_q_3 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.985ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.007ns (0.188 - 0.195)
+  Data Path Delay:      9.850ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.111ns (0.600 - 0.711)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -830,42 +836,42 @@ Slack:                  6.973ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p1odff_q_24 to M_p2sdff_q_72
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_13 to M_p1_tempr_q_3
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y55.AQ      Tcko                  0.476   M_p1odff_q[26]
-                                                       M_p1odff_q_24
-    SLICE_X5Y49.D4       net (fanout=4)        2.031   M_p1odff_q[24]
-    SLICE_X5Y49.D        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o16
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o141
-    SLICE_X5Y49.C6       net (fanout=1)        0.143   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o16
-    SLICE_X5Y49.C        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o16
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o142
-    SLICE_X8Y46.A1       net (fanout=1)        1.070   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o17
-    SLICE_X8Y46.A        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o147
-    SLICE_X8Y46.C1       net (fanout=5)        0.549   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o112
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.B6      net (fanout=18)       4.691   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310733
-                                                       M_p2sdff_q_72
+    SLICE_X6Y55.BQ       Tcko                  0.476   button_condP1right/M_ctr_q[15]
+                                                       button_condP1right/M_ctr_q_13
+    SLICE_X5Y53.B2       net (fanout=2)        0.972   button_condP1right/M_ctr_q[13]
+    SLICE_X5Y53.B        Tilo                  0.259   edge_detectorP1right/M_last_q
+                                                       button_condP1right/out3
+    SLICE_X7Y53.A4       net (fanout=3)        0.515   out2_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X11Y49.A2      net (fanout=2)        1.179   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X11Y49.A       Tilo                  0.259   M_p2_tempr_q[2]
+                                                       M_state_q_M_sh7_shift<1>21
+    SLICE_X13Y47.C3      net (fanout=12)       1.112   M_state_q_M_sh7_shift<1>2
+    SLICE_X13Y47.CLK     Tas                   0.373   M_p1_tempr_q[4]
+                                                       M_state_q__n3043<4>1
+                                                       M_p1_tempr_q_3
     -------------------------------------------------  ---------------------------
-    Total                                     12.985ns (2.106ns logic, 10.879ns route)
-                                                       (16.2% logic, 83.8% route)
+    Total                                      9.850ns (2.144ns logic, 7.706ns route)
+                                                       (21.8% logic, 78.2% route)
 
 --------------------------------------------------------------------------------
-Slack:                  7.000ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               button_condP2left/M_ctr_q_16 (FF)
-  Destination:          M_p2_tempr_q_2 (FF)
+Slack:                  10.010ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1enter/M_ctr_q_7 (FF)
+  Destination:          M_p2_tempr_q_6 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.878ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.087ns (0.601 - 0.688)
+  Data Path Delay:      9.947ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.008ns (0.324 - 0.332)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -876,42 +882,42 @@ Slack:                  7.000ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: button_condP2left/M_ctr_q_16 to M_p2_tempr_q_2
+  Maximum Data Path at Slow Process Corner: button_condP1enter/M_ctr_q_7 to M_p2_tempr_q_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y63.AQ      Tcko                  0.476   button_condP2left/M_ctr_q[19]
-                                                       button_condP2left/M_ctr_q_16
-    SLICE_X16Y60.C3      net (fanout=2)        0.838   button_condP2left/M_ctr_q[16]
-    SLICE_X16Y60.C       Tilo                  0.255   out1_1
-                                                       button_condP2left/out2
-    SLICE_X15Y60.A3      net (fanout=2)        0.569   out1_1
-    SLICE_X15Y60.A       Tilo                  0.259   M_last_q_1
-                                                       button_condP2left/out4
-    SLICE_X13Y34.B3      net (fanout=9)        3.290   M_button_condP2left_out
-    SLICE_X13Y34.B       Tilo                  0.259   M_edge_detectorP2up_out[0]_M_p2_tempr_q[6]_select_277_OUT<1>1
-                                                       M_state_q_FSM_FFd3-In11
-    SLICE_X23Y50.D1      net (fanout=6)        2.743   M_state_q_FSM_FFd3-In1
-    SLICE_X23Y50.D       Tilo                  0.259   M_state_q__n3081[5]
-                                                       M_state_q__n3081<5>1
-    SLICE_X14Y35.CX      net (fanout=1)        1.785   M_state_q__n3081[5]
-    SLICE_X14Y35.CMUX    Tcxc                  0.192   N480
-                                                       M_state_q__n3081<5>2_SW0
-    SLICE_X12Y32.A2      net (fanout=1)        1.614   N653
-    SLICE_X12Y32.CLK     Tas                   0.339   M_p2_tempr_q[4]
-                                                       M_state_q__n3081<5>4
-                                                       M_p2_tempr_q_2
+    SLICE_X8Y57.DQ       Tcko                  0.525   button_condP1enter/M_ctr_q[7]
+                                                       button_condP1enter/M_ctr_q_7
+    SLICE_X9Y59.C2       net (fanout=2)        0.907   button_condP1enter/M_ctr_q[7]
+    SLICE_X9Y59.C        Tilo                  0.259   out1_4
+                                                       button_condP1enter/out1
+    SLICE_X9Y59.A2       net (fanout=3)        0.549   out_4
+    SLICE_X9Y59.A        Tilo                  0.259   out1_4
+                                                       edge_detectorP1enter/out1
+    SLICE_X11Y47.D4      net (fanout=13)       2.174   M_edge_detectorP1enter_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.D2       net (fanout=12)       1.137   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<1>5
+                                                       M_p2_tempr_q_6
     -------------------------------------------------  ---------------------------
-    Total                                     12.878ns (2.039ns logic, 10.839ns route)
-                                                       (15.8% logic, 84.2% route)
+    Total                                      9.947ns (2.155ns logic, 7.792ns route)
+                                                       (21.7% logic, 78.3% route)
 
 --------------------------------------------------------------------------------
-Slack:                  7.011ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p1odff_q_24 (FF)
-  Destination:          M_p2sdff_q_66 (FF)
+Slack:                  10.020ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1enter/M_ctr_q_6 (FF)
+  Destination:          M_p1_tempr_q_4 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.943ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.011ns (0.290 - 0.301)
+  Data Path Delay:      9.839ns (Levels of Logic = 7)
+  Clock Path Skew:      -0.106ns (0.600 - 0.706)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -922,42 +928,45 @@ Slack:                  7.011ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p1odff_q_24 to M_p2sdff_q_66
+  Maximum Data Path at Slow Process Corner: button_condP1enter/M_ctr_q_6 to M_p1_tempr_q_4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y55.AQ      Tcko                  0.476   M_p1odff_q[26]
-                                                       M_p1odff_q_24
-    SLICE_X5Y49.D4       net (fanout=4)        2.031   M_p1odff_q[24]
-    SLICE_X5Y49.D        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o16
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o141
-    SLICE_X5Y49.C6       net (fanout=1)        0.143   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o16
-    SLICE_X5Y49.C        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o16
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o142
-    SLICE_X8Y46.A1       net (fanout=1)        1.070   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o17
-    SLICE_X8Y46.A        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o147
-    SLICE_X8Y46.C1       net (fanout=5)        0.549   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o112
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X12Y52.B1      net (fanout=18)       4.659   Mmux__n303110221
-    SLICE_X12Y52.CLK     Tas                   0.339   M_p2sdff_q[69]
-                                                       Mmux__n310739
-                                                       M_p2sdff_q_66
+    SLICE_X8Y57.CQ       Tcko                  0.525   button_condP1enter/M_ctr_q[7]
+                                                       button_condP1enter/M_ctr_q_6
+    SLICE_X9Y59.C1       net (fanout=2)        0.950   button_condP1enter/M_ctr_q[6]
+    SLICE_X9Y59.C        Tilo                  0.259   out1_4
+                                                       button_condP1enter/out1
+    SLICE_X9Y59.A2       net (fanout=3)        0.549   out_4
+    SLICE_X9Y59.A        Tilo                  0.259   out1_4
+                                                       edge_detectorP1enter/out1
+    SLICE_X13Y50.A1      net (fanout=13)       2.501   M_edge_detectorP1enter_out
+    SLICE_X13Y50.A       Tilo                  0.259   M_state_q_M_sh7_shift<3>1
+                                                       M_edge_detectorP1up_out[0]_GND_1_o_equal_313_o<0>1
+    SLICE_X13Y52.D3      net (fanout=9)        0.657   M_edge_detectorP1up_out[0]_GND_1_o_equal_313_o
+    SLICE_X13Y52.D       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+    SLICE_X13Y52.C5      net (fanout=1)        0.406   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X11Y49.A2      net (fanout=2)        1.179   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X11Y49.A       Tilo                  0.259   M_p2_tempr_q[2]
+                                                       M_state_q_M_sh7_shift<1>21
+    SLICE_X13Y47.D3      net (fanout=12)       1.145   M_state_q_M_sh7_shift<1>2
+    SLICE_X13Y47.CLK     Tas                   0.373   M_p1_tempr_q[4]
+                                                       M_state_q__n3043<3>1
+                                                       M_p1_tempr_q_4
     -------------------------------------------------  ---------------------------
-    Total                                     12.943ns (2.096ns logic, 10.847ns route)
-                                                       (16.2% logic, 83.8% route)
+    Total                                      9.839ns (2.452ns logic, 7.387ns route)
+                                                       (24.9% logic, 75.1% route)
 
 --------------------------------------------------------------------------------
-Slack:                  7.047ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p1odff_q_63 (FF)
-  Destination:          M_p2sdff_q_75 (FF)
+Slack:                  10.026ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_12 (FF)
+  Destination:          M_p1_tempr_q_3 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.850ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.068ns (0.655 - 0.723)
+  Data Path Delay:      9.828ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.111ns (0.600 - 0.711)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -968,42 +977,42 @@ Slack:                  7.047ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p1odff_q_63 to M_p2sdff_q_75
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_12 to M_p1_tempr_q_3
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X7Y50.AQ       Tcko                  0.430   M_p1odff_q[65]
-                                                       M_p1odff_q_63
-    SLICE_X7Y50.D2       net (fanout=4)        0.737   M_p1odff_q[63]
-    SLICE_X7Y50.D        Tilo                  0.259   M_p1odff_q[65]
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o154
-    SLICE_X3Y41.A3       net (fanout=1)        1.392   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o119
-    SLICE_X3Y41.A        Tilo                  0.259   dmP1o/Mmux_greenr122
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o157
-    SLICE_X8Y46.D3       net (fanout=1)        1.224   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o122
-    SLICE_X8Y46.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o166
-    SLICE_X8Y46.C6       net (fanout=5)        0.152   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.D3      net (fanout=18)       4.890   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310730
-                                                       M_p2sdff_q_75
+    SLICE_X6Y55.AQ       Tcko                  0.476   button_condP1right/M_ctr_q[15]
+                                                       button_condP1right/M_ctr_q_12
+    SLICE_X5Y53.B1       net (fanout=2)        0.950   button_condP1right/M_ctr_q[12]
+    SLICE_X5Y53.B        Tilo                  0.259   edge_detectorP1right/M_last_q
+                                                       button_condP1right/out3
+    SLICE_X7Y53.A4       net (fanout=3)        0.515   out2_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X11Y49.A2      net (fanout=2)        1.179   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X11Y49.A       Tilo                  0.259   M_p2_tempr_q[2]
+                                                       M_state_q_M_sh7_shift<1>21
+    SLICE_X13Y47.C3      net (fanout=12)       1.112   M_state_q_M_sh7_shift<1>2
+    SLICE_X13Y47.CLK     Tas                   0.373   M_p1_tempr_q[4]
+                                                       M_state_q__n3043<4>1
+                                                       M_p1_tempr_q_3
     -------------------------------------------------  ---------------------------
-    Total                                     12.850ns (2.060ns logic, 10.790ns route)
-                                                       (16.0% logic, 84.0% route)
+    Total                                      9.828ns (2.144ns logic, 7.684ns route)
+                                                       (21.8% logic, 78.2% route)
 
 --------------------------------------------------------------------------------
-Slack:                  7.048ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               button_condP2left/M_ctr_q_17 (FF)
-  Destination:          M_p2_tempr_q_2 (FF)
+Slack:                  10.029ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_7 (FF)
+  Destination:          M_p1_tempr_q_2 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.830ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.087ns (0.601 - 0.688)
+  Data Path Delay:      9.820ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.116ns (0.600 - 0.716)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1014,42 +1023,42 @@ Slack:                  7.048ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: button_condP2left/M_ctr_q_17 to M_p2_tempr_q_2
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_7 to M_p1_tempr_q_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y63.BQ      Tcko                  0.476   button_condP2left/M_ctr_q[19]
-                                                       button_condP2left/M_ctr_q_17
-    SLICE_X16Y60.C4      net (fanout=2)        0.790   button_condP2left/M_ctr_q[17]
-    SLICE_X16Y60.C       Tilo                  0.255   out1_1
-                                                       button_condP2left/out2
-    SLICE_X15Y60.A3      net (fanout=2)        0.569   out1_1
-    SLICE_X15Y60.A       Tilo                  0.259   M_last_q_1
-                                                       button_condP2left/out4
-    SLICE_X13Y34.B3      net (fanout=9)        3.290   M_button_condP2left_out
-    SLICE_X13Y34.B       Tilo                  0.259   M_edge_detectorP2up_out[0]_M_p2_tempr_q[6]_select_277_OUT<1>1
-                                                       M_state_q_FSM_FFd3-In11
-    SLICE_X23Y50.D1      net (fanout=6)        2.743   M_state_q_FSM_FFd3-In1
-    SLICE_X23Y50.D       Tilo                  0.259   M_state_q__n3081[5]
-                                                       M_state_q__n3081<5>1
-    SLICE_X14Y35.CX      net (fanout=1)        1.785   M_state_q__n3081[5]
-    SLICE_X14Y35.CMUX    Tcxc                  0.192   N480
-                                                       M_state_q__n3081<5>2_SW0
-    SLICE_X12Y32.A2      net (fanout=1)        1.614   N653
-    SLICE_X12Y32.CLK     Tas                   0.339   M_p2_tempr_q[4]
-                                                       M_state_q__n3081<5>4
-                                                       M_p2_tempr_q_2
+    SLICE_X6Y53.DQ       Tcko                  0.476   button_condP1right/M_ctr_q[7]
+                                                       button_condP1right/M_ctr_q_7
+    SLICE_X7Y53.C1       net (fanout=2)        0.970   button_condP1right/M_ctr_q[7]
+    SLICE_X7Y53.C        Tilo                  0.259   out1_5
+                                                       button_condP1right/out1
+    SLICE_X7Y53.A1       net (fanout=3)        0.757   out_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X13Y47.B4      net (fanout=12)       0.610   M_state_q_M_sh7_shift<1>1
+    SLICE_X13Y47.CLK     Tas                   0.373   M_p1_tempr_q[4]
+                                                       M_state_q__n3043<5>1
+                                                       M_p1_tempr_q_2
     -------------------------------------------------  ---------------------------
-    Total                                     12.830ns (2.039ns logic, 10.791ns route)
-                                                       (15.9% logic, 84.1% route)
+    Total                                      9.820ns (2.140ns logic, 7.680ns route)
+                                                       (21.8% logic, 78.2% route)
 
 --------------------------------------------------------------------------------
-Slack:                  7.068ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_48 (FF)
-  Destination:          M_p2sdff_q_75 (FF)
+Slack:                  10.033ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_13 (FF)
+  Destination:          M_p2_tempr_q_4 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.885ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.012ns (0.655 - 0.667)
+  Data Path Delay:      9.919ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.013ns (0.324 - 0.337)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1060,42 +1069,42 @@ Slack:                  7.068ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_48 to M_p2sdff_q_75
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_13 to M_p2_tempr_q_4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X2Y45.AQ       Tcko                  0.476   M_p2sdff_q[51]
-                                                       M_p2sdff_q_48
-    SLICE_X8Y53.D5       net (fanout=5)        1.563   M_p2sdff_q[48]
-    SLICE_X8Y53.D        Tilo                  0.254   M_p1odff_q[50]
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o148
-    SLICE_X9Y49.A3       net (fanout=1)        0.788   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o113
-    SLICE_X9Y49.A        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o116
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o152
-    SLICE_X8Y46.D1       net (fanout=1)        0.996   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o117
-    SLICE_X8Y46.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o166
-    SLICE_X8Y46.C6       net (fanout=5)        0.152   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.D3      net (fanout=18)       4.890   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310730
-                                                       M_p2sdff_q_75
+    SLICE_X6Y55.BQ       Tcko                  0.476   button_condP1right/M_ctr_q[15]
+                                                       button_condP1right/M_ctr_q_13
+    SLICE_X5Y53.B2       net (fanout=2)        0.972   button_condP1right/M_ctr_q[13]
+    SLICE_X5Y53.B        Tilo                  0.259   edge_detectorP1right/M_last_q
+                                                       button_condP1right/out3
+    SLICE_X7Y53.A4       net (fanout=3)        0.515   out2_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.B3       net (fanout=12)       0.983   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<3>1
+                                                       M_p2_tempr_q_4
     -------------------------------------------------  ---------------------------
-    Total                                     12.885ns (2.101ns logic, 10.784ns route)
-                                                       (16.3% logic, 83.7% route)
+    Total                                      9.919ns (2.106ns logic, 7.813ns route)
+                                                       (21.2% logic, 78.8% route)
 
 --------------------------------------------------------------------------------
-Slack:                  7.090ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               button_condP2left/M_ctr_q_6 (FF)
-  Destination:          M_p2_tempr_q_2 (FF)
+Slack:                  10.035ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_18 (FF)
+  Destination:          M_p2_tempr_q_6 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.791ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.084ns (0.601 - 0.685)
+  Data Path Delay:      9.917ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.013ns (0.324 - 0.337)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1106,42 +1115,42 @@ Slack:                  7.090ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: button_condP2left/M_ctr_q_6 to M_p2_tempr_q_2
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_18 to M_p2_tempr_q_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y60.CQ      Tcko                  0.476   button_condP2left/M_ctr_q[7]
-                                                       button_condP2left/M_ctr_q_6
-    SLICE_X16Y60.A3      net (fanout=2)        0.572   button_condP2left/M_ctr_q[6]
-    SLICE_X16Y60.A       Tilo                  0.254   out1_1
-                                                       button_condP2left/out1
-    SLICE_X15Y60.A1      net (fanout=2)        0.749   out_1
-    SLICE_X15Y60.A       Tilo                  0.259   M_last_q_1
-                                                       button_condP2left/out4
-    SLICE_X13Y34.B3      net (fanout=9)        3.290   M_button_condP2left_out
-    SLICE_X13Y34.B       Tilo                  0.259   M_edge_detectorP2up_out[0]_M_p2_tempr_q[6]_select_277_OUT<1>1
-                                                       M_state_q_FSM_FFd3-In11
-    SLICE_X23Y50.D1      net (fanout=6)        2.743   M_state_q_FSM_FFd3-In1
-    SLICE_X23Y50.D       Tilo                  0.259   M_state_q__n3081[5]
-                                                       M_state_q__n3081<5>1
-    SLICE_X14Y35.CX      net (fanout=1)        1.785   M_state_q__n3081[5]
-    SLICE_X14Y35.CMUX    Tcxc                  0.192   N480
-                                                       M_state_q__n3081<5>2_SW0
-    SLICE_X12Y32.A2      net (fanout=1)        1.614   N653
-    SLICE_X12Y32.CLK     Tas                   0.339   M_p2_tempr_q[4]
-                                                       M_state_q__n3081<5>4
-                                                       M_p2_tempr_q_2
+    SLICE_X6Y56.CQ       Tcko                  0.476   button_condP1right/M_ctr_q[19]
+                                                       button_condP1right/M_ctr_q_18
+    SLICE_X7Y53.D1       net (fanout=2)        0.965   button_condP1right/M_ctr_q[18]
+    SLICE_X7Y53.D        Tilo                  0.259   out1_5
+                                                       button_condP1right/out2
+    SLICE_X7Y53.A3       net (fanout=3)        0.366   out1_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.D2       net (fanout=12)       1.137   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<1>5
+                                                       M_p2_tempr_q_6
     -------------------------------------------------  ---------------------------
-    Total                                     12.791ns (2.038ns logic, 10.753ns route)
-                                                       (15.9% logic, 84.1% route)
+    Total                                      9.917ns (2.106ns logic, 7.811ns route)
+                                                       (21.2% logic, 78.8% route)
 
 --------------------------------------------------------------------------------
-Slack:                  7.093ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p1odff_q_3 (FF)
-  Destination:          M_p2sdff_q_75 (FF)
+Slack:                  10.038ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_17 (FF)
+  Destination:          M_p2_tempr_q_6 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.824ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.048ns (0.655 - 0.703)
+  Data Path Delay:      9.914ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.013ns (0.324 - 0.337)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1152,42 +1161,42 @@ Slack:                  7.093ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p1odff_q_3 to M_p2sdff_q_75
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_17 to M_p2_tempr_q_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X8Y56.BQ       Tcko                  0.525   M_p1odff_q[5]
-                                                       M_p1odff_q_3
-    SLICE_X5Y46.C4       net (fanout=4)        1.332   M_p1odff_q[3]
-    SLICE_X5Y46.C        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o18
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o143
-    SLICE_X5Y46.B1       net (fanout=1)        0.705   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o18
-    SLICE_X5Y46.B        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o18
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o144
-    SLICE_X8Y46.A6       net (fanout=1)        0.798   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o19
-    SLICE_X8Y46.A        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o147
-    SLICE_X8Y46.C1       net (fanout=5)        0.549   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o112
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.D3      net (fanout=18)       4.890   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310730
-                                                       M_p2sdff_q_75
+    SLICE_X6Y56.BQ       Tcko                  0.476   button_condP1right/M_ctr_q[19]
+                                                       button_condP1right/M_ctr_q_17
+    SLICE_X7Y53.D2       net (fanout=2)        0.962   button_condP1right/M_ctr_q[17]
+    SLICE_X7Y53.D        Tilo                  0.259   out1_5
+                                                       button_condP1right/out2
+    SLICE_X7Y53.A3       net (fanout=3)        0.366   out1_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.D2       net (fanout=12)       1.137   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<1>5
+                                                       M_p2_tempr_q_6
     -------------------------------------------------  ---------------------------
-    Total                                     12.824ns (2.155ns logic, 10.669ns route)
-                                                       (16.8% logic, 83.2% route)
+    Total                                      9.914ns (2.106ns logic, 7.808ns route)
+                                                       (21.2% logic, 78.8% route)
 
 --------------------------------------------------------------------------------
-Slack:                  7.110ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               button_condP2left/M_ctr_q_3 (FF)
-  Destination:          M_p2_tempr_q_2 (FF)
+Slack:                  10.052ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_6 (FF)
+  Destination:          M_p2_tempr_q_6 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.774ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.081ns (0.601 - 0.682)
+  Data Path Delay:      9.895ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.018ns (0.324 - 0.342)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1198,42 +1207,42 @@ Slack:                  7.110ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: button_condP2left/M_ctr_q_3 to M_p2_tempr_q_2
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_6 to M_p2_tempr_q_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y59.DQ      Tcko                  0.476   button_condP2left/M_ctr_q[3]
-                                                       button_condP2left/M_ctr_q_3
-    SLICE_X16Y60.A4      net (fanout=2)        0.555   button_condP2left/M_ctr_q[3]
-    SLICE_X16Y60.A       Tilo                  0.254   out1_1
-                                                       button_condP2left/out1
-    SLICE_X15Y60.A1      net (fanout=2)        0.749   out_1
-    SLICE_X15Y60.A       Tilo                  0.259   M_last_q_1
-                                                       button_condP2left/out4
-    SLICE_X13Y34.B3      net (fanout=9)        3.290   M_button_condP2left_out
-    SLICE_X13Y34.B       Tilo                  0.259   M_edge_detectorP2up_out[0]_M_p2_tempr_q[6]_select_277_OUT<1>1
-                                                       M_state_q_FSM_FFd3-In11
-    SLICE_X23Y50.D1      net (fanout=6)        2.743   M_state_q_FSM_FFd3-In1
-    SLICE_X23Y50.D       Tilo                  0.259   M_state_q__n3081[5]
-                                                       M_state_q__n3081<5>1
-    SLICE_X14Y35.CX      net (fanout=1)        1.785   M_state_q__n3081[5]
-    SLICE_X14Y35.CMUX    Tcxc                  0.192   N480
-                                                       M_state_q__n3081<5>2_SW0
-    SLICE_X12Y32.A2      net (fanout=1)        1.614   N653
-    SLICE_X12Y32.CLK     Tas                   0.339   M_p2_tempr_q[4]
-                                                       M_state_q__n3081<5>4
-                                                       M_p2_tempr_q_2
+    SLICE_X6Y53.CQ       Tcko                  0.476   button_condP1right/M_ctr_q[7]
+                                                       button_condP1right/M_ctr_q_6
+    SLICE_X7Y53.C3       net (fanout=2)        0.552   button_condP1right/M_ctr_q[6]
+    SLICE_X7Y53.C        Tilo                  0.259   out1_5
+                                                       button_condP1right/out1
+    SLICE_X7Y53.A1       net (fanout=3)        0.757   out_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.D2       net (fanout=12)       1.137   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<1>5
+                                                       M_p2_tempr_q_6
     -------------------------------------------------  ---------------------------
-    Total                                     12.774ns (2.038ns logic, 10.736ns route)
-                                                       (16.0% logic, 84.0% route)
+    Total                                      9.895ns (2.106ns logic, 7.789ns route)
+                                                       (21.3% logic, 78.7% route)
 
 --------------------------------------------------------------------------------
-Slack:                  7.138ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_49 (FF)
-  Destination:          M_p2sdff_q_72 (FF)
+Slack:                  10.053ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1enter/M_ctr_q_6 (FF)
+  Destination:          M_p1_tempr_q_3 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.815ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.012ns (0.655 - 0.667)
+  Data Path Delay:      9.806ns (Levels of Logic = 7)
+  Clock Path Skew:      -0.106ns (0.600 - 0.706)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1244,42 +1253,45 @@ Slack:                  7.138ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_49 to M_p2sdff_q_72
+  Maximum Data Path at Slow Process Corner: button_condP1enter/M_ctr_q_6 to M_p1_tempr_q_3
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X2Y45.BQ       Tcko                  0.476   M_p2sdff_q[51]
-                                                       M_p2sdff_q_49
-    SLICE_X8Y53.D3       net (fanout=6)        1.692   M_p2sdff_q[49]
-    SLICE_X8Y53.D        Tilo                  0.254   M_p1odff_q[50]
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o148
-    SLICE_X9Y49.A3       net (fanout=1)        0.788   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o113
-    SLICE_X9Y49.A        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o116
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o152
-    SLICE_X8Y46.D1       net (fanout=1)        0.996   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o117
-    SLICE_X8Y46.D        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o166
-    SLICE_X8Y46.C6       net (fanout=5)        0.152   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.B6      net (fanout=18)       4.691   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310733
-                                                       M_p2sdff_q_72
+    SLICE_X8Y57.CQ       Tcko                  0.525   button_condP1enter/M_ctr_q[7]
+                                                       button_condP1enter/M_ctr_q_6
+    SLICE_X9Y59.C1       net (fanout=2)        0.950   button_condP1enter/M_ctr_q[6]
+    SLICE_X9Y59.C        Tilo                  0.259   out1_4
+                                                       button_condP1enter/out1
+    SLICE_X9Y59.A2       net (fanout=3)        0.549   out_4
+    SLICE_X9Y59.A        Tilo                  0.259   out1_4
+                                                       edge_detectorP1enter/out1
+    SLICE_X13Y50.A1      net (fanout=13)       2.501   M_edge_detectorP1enter_out
+    SLICE_X13Y50.A       Tilo                  0.259   M_state_q_M_sh7_shift<3>1
+                                                       M_edge_detectorP1up_out[0]_GND_1_o_equal_313_o<0>1
+    SLICE_X13Y52.D3      net (fanout=9)        0.657   M_edge_detectorP1up_out[0]_GND_1_o_equal_313_o
+    SLICE_X13Y52.D       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+    SLICE_X13Y52.C5      net (fanout=1)        0.406   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X11Y49.A2      net (fanout=2)        1.179   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X11Y49.A       Tilo                  0.259   M_p2_tempr_q[2]
+                                                       M_state_q_M_sh7_shift<1>21
+    SLICE_X13Y47.C3      net (fanout=12)       1.112   M_state_q_M_sh7_shift<1>2
+    SLICE_X13Y47.CLK     Tas                   0.373   M_p1_tempr_q[4]
+                                                       M_state_q__n3043<4>1
+                                                       M_p1_tempr_q_3
     -------------------------------------------------  ---------------------------
-    Total                                     12.815ns (2.101ns logic, 10.714ns route)
-                                                       (16.4% logic, 83.6% route)
+    Total                                      9.806ns (2.452ns logic, 7.354ns route)
+                                                       (25.0% logic, 75.0% route)
 
 --------------------------------------------------------------------------------
-Slack:                  7.143ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_24 (FF)
-  Destination:          M_p2sdff_q_75 (FF)
+Slack:                  10.055ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1right/M_ctr_q_12 (FF)
+  Destination:          M_p2_tempr_q_4 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.815ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.007ns (0.188 - 0.195)
+  Data Path Delay:      9.897ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.013ns (0.324 - 0.337)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1290,42 +1302,42 @@ Slack:                  7.143ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_24 to M_p2sdff_q_75
+  Maximum Data Path at Slow Process Corner: button_condP1right/M_ctr_q_12 to M_p2_tempr_q_4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X15Y55.AQ      Tcko                  0.430   M_p2sdff_q[28]
-                                                       M_p2sdff_q_24
-    SLICE_X5Y49.D1       net (fanout=5)        1.708   M_p2sdff_q[24]
-    SLICE_X5Y49.D        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o16
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o141
-    SLICE_X5Y49.C6       net (fanout=1)        0.143   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o16
-    SLICE_X5Y49.C        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o16
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o142
-    SLICE_X8Y46.A1       net (fanout=1)        1.070   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o17
-    SLICE_X8Y46.A        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o147
-    SLICE_X8Y46.C1       net (fanout=5)        0.549   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o112
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.D3      net (fanout=18)       4.890   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310730
-                                                       M_p2sdff_q_75
+    SLICE_X6Y55.AQ       Tcko                  0.476   button_condP1right/M_ctr_q[15]
+                                                       button_condP1right/M_ctr_q_12
+    SLICE_X5Y53.B1       net (fanout=2)        0.950   button_condP1right/M_ctr_q[12]
+    SLICE_X5Y53.B        Tilo                  0.259   edge_detectorP1right/M_last_q
+                                                       button_condP1right/out3
+    SLICE_X7Y53.A4       net (fanout=3)        0.515   out2_5
+    SLICE_X7Y53.A        Tilo                  0.259   out1_5
+                                                       edge_detectorP1right/out1
+    SLICE_X11Y47.D5      net (fanout=13)       2.318   M_edge_detectorP1right_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X12Y49.C4      net (fanout=2)        1.415   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X12Y49.C       Tilo                  0.255   M_p1_tempr_q[6]
+                                                       M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.B3       net (fanout=12)       0.983   M_state_q_M_sh7_shift<1>1
+    SLICE_X8Y49.CLK      Tas                   0.339   M_p2_tempr_q[6]
+                                                       M_state_q__n2994<3>1
+                                                       M_p2_tempr_q_4
     -------------------------------------------------  ---------------------------
-    Total                                     12.815ns (2.060ns logic, 10.755ns route)
-                                                       (16.1% logic, 83.9% route)
+    Total                                      9.897ns (2.106ns logic, 7.791ns route)
+                                                       (21.3% logic, 78.7% route)
 
 --------------------------------------------------------------------------------
-Slack:                  7.146ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_p2sdff_q_4 (FF)
-  Destination:          M_p2sdff_q_72 (FF)
+Slack:                  10.059ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1enter/M_ctr_q_6 (FF)
+  Destination:          M_p1_tempr_q_4 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.770ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.049ns (0.655 - 0.704)
+  Data Path Delay:      9.800ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.106ns (0.600 - 0.706)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1336,42 +1348,42 @@ Slack:                  7.146ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_p2sdff_q_4 to M_p2sdff_q_72
+  Maximum Data Path at Slow Process Corner: button_condP1enter/M_ctr_q_6 to M_p1_tempr_q_4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y55.DQ       Tcko                  0.430   M_p2sdff_q[4]
-                                                       M_p2sdff_q_4
-    SLICE_X5Y46.C1       net (fanout=6)        1.572   M_p2sdff_q[4]
-    SLICE_X5Y46.C        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o18
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o143
-    SLICE_X5Y46.B1       net (fanout=1)        0.705   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o18
-    SLICE_X5Y46.B        Tilo                  0.259   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o18
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o144
-    SLICE_X8Y46.A6       net (fanout=1)        0.798   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o19
-    SLICE_X8Y46.A        Tilo                  0.254   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o147
-    SLICE_X8Y46.C1       net (fanout=5)        0.549   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o112
-    SLICE_X8Y46.C        Tilo                  0.255   Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o131
-                                                       Mmux_M_p2sdff_q[2]_GND_1_o_not_equal_862_o174
-    SLICE_X4Y21.A3       net (fanout=7)        2.395   M_p2sdff_q[2]_GND_1_o_not_equal_862_o
-    SLICE_X4Y21.A        Tilo                  0.254   M_p1sdff_q[9]
-                                                       Mmux__n30311022_1
-    SLICE_X14Y53.B6      net (fanout=18)       4.691   Mmux__n303110221
-    SLICE_X14Y53.CLK     Tas                   0.349   M_p2sdff_q[75]
-                                                       Mmux__n310733
-                                                       M_p2sdff_q_72
+    SLICE_X8Y57.CQ       Tcko                  0.525   button_condP1enter/M_ctr_q[7]
+                                                       button_condP1enter/M_ctr_q_6
+    SLICE_X9Y59.C1       net (fanout=2)        0.950   button_condP1enter/M_ctr_q[6]
+    SLICE_X9Y59.C        Tilo                  0.259   out1_4
+                                                       button_condP1enter/out1
+    SLICE_X9Y59.A2       net (fanout=3)        0.549   out_4
+    SLICE_X9Y59.A        Tilo                  0.259   out1_4
+                                                       edge_detectorP1enter/out1
+    SLICE_X11Y47.D4      net (fanout=13)       2.174   M_edge_detectorP1enter_out
+    SLICE_X11Y47.D       Tilo                  0.259   _n3296
+                                                       _n32961
+    SLICE_X13Y52.C2      net (fanout=4)        1.610   _n3296
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X11Y49.A2      net (fanout=2)        1.179   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X11Y49.A       Tilo                  0.259   M_p2_tempr_q[2]
+                                                       M_state_q_M_sh7_shift<1>21
+    SLICE_X13Y47.D3      net (fanout=12)       1.145   M_state_q_M_sh7_shift<1>2
+    SLICE_X13Y47.CLK     Tas                   0.373   M_p1_tempr_q[4]
+                                                       M_state_q__n3043<3>1
+                                                       M_p1_tempr_q_4
     -------------------------------------------------  ---------------------------
-    Total                                     12.770ns (2.060ns logic, 10.710ns route)
-                                                       (16.1% logic, 83.9% route)
+    Total                                      9.800ns (2.193ns logic, 7.607ns route)
+                                                       (22.4% logic, 77.6% route)
 
 --------------------------------------------------------------------------------
-Slack:                  7.164ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               button_condP2left/M_ctr_q_14 (FF)
-  Destination:          M_p2_tempr_q_2 (FF)
+Slack:                  10.063ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               button_condP1enter/M_ctr_q_7 (FF)
+  Destination:          M_p1_tempr_q_4 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.715ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.086ns (0.601 - 0.687)
+  Data Path Delay:      9.796ns (Levels of Logic = 7)
+  Clock Path Skew:      -0.106ns (0.600 - 0.706)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1382,34 +1394,37 @@ Slack:                  7.164ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: button_condP2left/M_ctr_q_14 to M_p2_tempr_q_2
+  Maximum Data Path at Slow Process Corner: button_condP1enter/M_ctr_q_7 to M_p1_tempr_q_4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y62.CQ      Tcko                  0.476   button_condP2left/M_ctr_q[15]
-                                                       button_condP2left/M_ctr_q_14
-    SLICE_X16Y60.C5      net (fanout=2)        0.675   button_condP2left/M_ctr_q[14]
-    SLICE_X16Y60.C       Tilo                  0.255   out1_1
-                                                       button_condP2left/out2
-    SLICE_X15Y60.A3      net (fanout=2)        0.569   out1_1
-    SLICE_X15Y60.A       Tilo                  0.259   M_last_q_1
-                                                       button_condP2left/out4
-    SLICE_X13Y34.B3      net (fanout=9)        3.290   M_button_condP2left_out
-    SLICE_X13Y34.B       Tilo                  0.259   M_edge_detectorP2up_out[0]_M_p2_tempr_q[6]_select_277_OUT<1>1
-                                                       M_state_q_FSM_FFd3-In11
-    SLICE_X23Y50.D1      net (fanout=6)        2.743   M_state_q_FSM_FFd3-In1
-    SLICE_X23Y50.D       Tilo                  0.259   M_state_q__n3081[5]
-                                                       M_state_q__n3081<5>1
-    SLICE_X14Y35.CX      net (fanout=1)        1.785   M_state_q__n3081[5]
-    SLICE_X14Y35.CMUX    Tcxc                  0.192   N480
-                                                       M_state_q__n3081<5>2_SW0
-    SLICE_X12Y32.A2      net (fanout=1)        1.614   N653
-    SLICE_X12Y32.CLK     Tas                   0.339   M_p2_tempr_q[4]
-                                                       M_state_q__n3081<5>4
-                                                       M_p2_tempr_q_2
+    SLICE_X8Y57.DQ       Tcko                  0.525   button_condP1enter/M_ctr_q[7]
+                                                       button_condP1enter/M_ctr_q_7
+    SLICE_X9Y59.C2       net (fanout=2)        0.907   button_condP1enter/M_ctr_q[7]
+    SLICE_X9Y59.C        Tilo                  0.259   out1_4
+                                                       button_condP1enter/out1
+    SLICE_X9Y59.A2       net (fanout=3)        0.549   out_4
+    SLICE_X9Y59.A        Tilo                  0.259   out1_4
+                                                       edge_detectorP1enter/out1
+    SLICE_X13Y50.A1      net (fanout=13)       2.501   M_edge_detectorP1enter_out
+    SLICE_X13Y50.A       Tilo                  0.259   M_state_q_M_sh7_shift<3>1
+                                                       M_edge_detectorP1up_out[0]_GND_1_o_equal_313_o<0>1
+    SLICE_X13Y52.D3      net (fanout=9)        0.657   M_edge_detectorP1up_out[0]_GND_1_o_equal_313_o
+    SLICE_X13Y52.D       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+    SLICE_X13Y52.C5      net (fanout=1)        0.406   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+    SLICE_X13Y52.C       Tilo                  0.259   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>2
+                                                       M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT<0>3
+    SLICE_X11Y49.A2      net (fanout=2)        1.179   M_edge_detectorP1up_out[0]_M_edge_detectorP2up_out[0]_select_77_OUT[0]
+    SLICE_X11Y49.A       Tilo                  0.259   M_p2_tempr_q[2]
+                                                       M_state_q_M_sh7_shift<1>21
+    SLICE_X13Y47.D3      net (fanout=12)       1.145   M_state_q_M_sh7_shift<1>2
+    SLICE_X13Y47.CLK     Tas                   0.373   M_p1_tempr_q[4]
+                                                       M_state_q__n3043<3>1
+                                                       M_p1_tempr_q_4
     -------------------------------------------------  ---------------------------
-    Total                                     12.715ns (2.039ns logic, 10.676ns route)
-                                                       (16.0% logic, 84.0% route)
+    Total                                      9.796ns (2.452ns logic, 7.344ns route)
+                                                       (25.0% logic, 75.0% route)
 
 --------------------------------------------------------------------------------
 
@@ -1492,7 +1507,7 @@ Slack: 18.601ns (period - min period limit)
   Min period limit: 1.399ns (714.796MHz) (Tcp)
   Physical resource: button_condP2right/M_sync_out/CLK
   Logical resource: button_condP2up/sync/Mshreg_M_pipe_q_1/CLK
-  Location pin: SLICE_X20Y52.CLK
+  Location pin: SLICE_X20Y50.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 18.601ns (period - min period limit)
@@ -1500,159 +1515,159 @@ Slack: 18.601ns (period - min period limit)
   Min period limit: 1.399ns (714.796MHz) (Tcp)
   Physical resource: button_condP2right/M_sync_out/CLK
   Logical resource: button_condP2right/sync/Mshreg_M_pipe_q_1/CLK
-  Location pin: SLICE_X20Y52.CLK
+  Location pin: SLICE_X20Y50.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[3]/CLK
-  Logical resource: button_condP1left/M_ctr_q_0/CK
-  Location pin: SLICE_X16Y40.CLK
+  Physical resource: dmP2o/M_counter_q[3]/CLK
+  Logical resource: dmP2o/M_counter_q_0/CK
+  Location pin: SLICE_X8Y6.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[3]/CLK
-  Logical resource: button_condP1left/M_ctr_q_1/CK
-  Location pin: SLICE_X16Y40.CLK
+  Physical resource: dmP2o/M_counter_q[3]/CLK
+  Logical resource: dmP2o/M_counter_q_1/CK
+  Location pin: SLICE_X8Y6.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[3]/CLK
-  Logical resource: button_condP1left/M_ctr_q_2/CK
-  Location pin: SLICE_X16Y40.CLK
+  Physical resource: dmP2o/M_counter_q[3]/CLK
+  Logical resource: dmP2o/M_counter_q_2/CK
+  Location pin: SLICE_X8Y6.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[3]/CLK
-  Logical resource: button_condP1left/M_ctr_q_3/CK
-  Location pin: SLICE_X16Y40.CLK
+  Physical resource: dmP2o/M_counter_q[3]/CLK
+  Logical resource: dmP2o/M_counter_q_3/CK
+  Location pin: SLICE_X8Y6.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[7]/CLK
-  Logical resource: button_condP1left/M_ctr_q_4/CK
-  Location pin: SLICE_X16Y41.CLK
+  Physical resource: dmP2o/M_counter_q[7]/CLK
+  Logical resource: dmP2o/M_counter_q_4/CK
+  Location pin: SLICE_X8Y7.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[7]/CLK
-  Logical resource: button_condP1left/M_ctr_q_5/CK
-  Location pin: SLICE_X16Y41.CLK
+  Physical resource: dmP2o/M_counter_q[7]/CLK
+  Logical resource: dmP2o/M_counter_q_5/CK
+  Location pin: SLICE_X8Y7.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[7]/CLK
-  Logical resource: button_condP1left/M_ctr_q_6/CK
-  Location pin: SLICE_X16Y41.CLK
+  Physical resource: dmP2o/M_counter_q[7]/CLK
+  Logical resource: dmP2o/M_counter_q_6/CK
+  Location pin: SLICE_X8Y7.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[7]/CLK
-  Logical resource: button_condP1left/M_ctr_q_7/CK
-  Location pin: SLICE_X16Y41.CLK
+  Physical resource: dmP2o/M_counter_q[7]/CLK
+  Logical resource: dmP2o/M_counter_q_7/CK
+  Location pin: SLICE_X8Y7.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[11]/CLK
-  Logical resource: button_condP1left/M_ctr_q_8/CK
-  Location pin: SLICE_X16Y42.CLK
+  Physical resource: dmP2o/M_counter_q[11]/CLK
+  Logical resource: dmP2o/M_counter_q_8/CK
+  Location pin: SLICE_X8Y8.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[11]/CLK
-  Logical resource: button_condP1left/M_ctr_q_9/CK
-  Location pin: SLICE_X16Y42.CLK
+  Physical resource: dmP2o/M_counter_q[11]/CLK
+  Logical resource: dmP2o/M_counter_q_9/CK
+  Location pin: SLICE_X8Y8.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[11]/CLK
-  Logical resource: button_condP1left/M_ctr_q_10/CK
-  Location pin: SLICE_X16Y42.CLK
+  Physical resource: dmP2o/M_counter_q[11]/CLK
+  Logical resource: dmP2o/M_counter_q_10/CK
+  Location pin: SLICE_X8Y8.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[11]/CLK
-  Logical resource: button_condP1left/M_ctr_q_11/CK
-  Location pin: SLICE_X16Y42.CLK
+  Physical resource: dmP2o/M_counter_q[11]/CLK
+  Logical resource: dmP2o/M_counter_q_11/CK
+  Location pin: SLICE_X8Y8.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[15]/CLK
-  Logical resource: button_condP1left/M_ctr_q_12/CK
-  Location pin: SLICE_X16Y43.CLK
+  Physical resource: dmP2o/M_counter_q[12]/CLK
+  Logical resource: dmP2o/M_counter_q_12/CK
+  Location pin: SLICE_X8Y9.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[15]/CLK
-  Logical resource: button_condP1left/M_ctr_q_13/CK
-  Location pin: SLICE_X16Y43.CLK
+  Physical resource: button_condP1enter/M_ctr_q[3]/CLK
+  Logical resource: button_condP1enter/M_ctr_q_0/CK
+  Location pin: SLICE_X8Y56.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[15]/CLK
-  Logical resource: button_condP1left/M_ctr_q_14/CK
-  Location pin: SLICE_X16Y43.CLK
+  Physical resource: button_condP1enter/M_ctr_q[3]/CLK
+  Logical resource: button_condP1enter/M_ctr_q_1/CK
+  Location pin: SLICE_X8Y56.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[15]/CLK
-  Logical resource: button_condP1left/M_ctr_q_15/CK
-  Location pin: SLICE_X16Y43.CLK
+  Physical resource: button_condP1enter/M_ctr_q[3]/CLK
+  Logical resource: button_condP1enter/M_ctr_q_2/CK
+  Location pin: SLICE_X8Y56.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[19]/CLK
-  Logical resource: button_condP1left/M_ctr_q_16/CK
-  Location pin: SLICE_X16Y44.CLK
+  Physical resource: button_condP1enter/M_ctr_q[3]/CLK
+  Logical resource: button_condP1enter/M_ctr_q_3/CK
+  Location pin: SLICE_X8Y56.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[19]/CLK
-  Logical resource: button_condP1left/M_ctr_q_17/CK
-  Location pin: SLICE_X16Y44.CLK
+  Physical resource: button_condP1enter/M_ctr_q[7]/CLK
+  Logical resource: button_condP1enter/M_ctr_q_4/CK
+  Location pin: SLICE_X8Y57.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: button_condP1left/M_ctr_q[19]/CLK
-  Logical resource: button_condP1left/M_ctr_q_18/CK
-  Location pin: SLICE_X16Y44.CLK
+  Physical resource: button_condP1enter/M_ctr_q[7]/CLK
+  Logical resource: button_condP1enter/M_ctr_q_5/CK
+  Location pin: SLICE_X8Y57.CLK
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 
@@ -1669,7 +1684,7 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |   13.662|         |         |         |
+clk            |   10.366|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
@@ -1678,23 +1693,23 @@ Timing summary:
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 126065 paths, 0 nets, and 4976 connections
+Constraints cover 215043 paths, 0 nets, and 4492 connections
 
 Design statistics:
-   Minimum period:  13.662ns{1}   (Maximum frequency:  73.196MHz)
+   Minimum period:  10.366ns{1}   (Maximum frequency:  96.469MHz)
 
 
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Fri Dec 09 09:59:27 2016 
+Analysis completed Wed Dec 14 00:24:44 2016 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 240 MB
+Peak Memory Usage: 239 MB
 
 
 

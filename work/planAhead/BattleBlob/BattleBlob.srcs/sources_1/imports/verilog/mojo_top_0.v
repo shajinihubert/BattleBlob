@@ -329,6 +329,28 @@ module mojo_top_0 (
   
   reg [3:0] M_state_d, M_state_q = INITIALISE_state;
   
+  wire [5-1:0] M_sh5_shift;
+  reg [5-1:0] M_sh5_a;
+  reg [3-1:0] M_sh5_b;
+  reg [6-1:0] M_sh5_alufn;
+  shifter5_26 sh5 (
+    .a(M_sh5_a),
+    .b(M_sh5_b),
+    .alufn(M_sh5_alufn),
+    .shift(M_sh5_shift)
+  );
+  
+  wire [7-1:0] M_sh7_shift;
+  reg [7-1:0] M_sh7_a;
+  reg [3-1:0] M_sh7_b;
+  reg [6-1:0] M_sh7_alufn;
+  shifter7_27 sh7 (
+    .a(M_sh7_a),
+    .b(M_sh7_b),
+    .alufn(M_sh7_alufn),
+    .shift(M_sh7_shift)
+  );
+  
   always @* begin
     M_state_d = M_state_q;
     M_p2odff_d = M_p2odff_q;
@@ -348,6 +370,12 @@ module mojo_top_0 (
     spi_miso = 1'bz;
     spi_channel = 4'bzzzz;
     avr_rx = 1'bz;
+    M_sh5_a = 5'h00;
+    M_sh7_a = 7'h00;
+    M_sh5_b = 3'h1;
+    M_sh7_b = 3'h1;
+    M_sh5_alufn = 6'h00;
+    M_sh7_alufn = 6'h00;
     sp1sdff = M_p1sdff_q;
     sp1odff = M_p1odff_q;
     sp2sdff = M_p2sdff_q;
@@ -436,75 +464,89 @@ module mojo_top_0 (
         M_state_d = PREP_state;
       end
       PREP_state: begin
-        
-        case (p1Btn)
-          5'h10: begin
-            if (sp1_tempc <= 5'h0c) begin
-              if (sp1_blob != 2'h2) begin
-                M_p1_tempc_d = sp1_tempc << 1'h1;
-              end
-            end
-          end
-          5'h08: begin
-            if (sp1_tempc >= 5'h06) begin
-              if (sp1_blob != 2'h2) begin
-                M_p1_tempc_d = sp1_tempc >> 1'h1;
-              end
-            end
-          end
-          5'h02: begin
-            if (sp1_tempr <= 7'h30) begin
-              if (sp1_blob != 2'h2) begin
-                M_p1_tempr_d = sp1_tempr << 1'h1;
-              end
-            end
-          end
-          5'h04: begin
-            if (sp1_tempr >= 7'h06) begin
-              if (sp1_blob != 2'h2) begin
-                M_p1_tempr_d = sp1_tempr >> 1'h1;
-              end
-            end
-          end
-          5'h01: begin
-            if (sp1_blob != 2'h2) begin
-              M_state_d = SETTLE_P1_state;
-            end
-          end
-        endcase
+        M_sh5_a = sp2_tempc;
+        M_sh7_a = sp2_tempr;
         
         case (p2Btn)
           5'h10: begin
             if (sp2_tempc <= 5'h0c) begin
               if (sp2_blob != 2'h2) begin
-                M_p2_tempc_d = sp2_tempc << 1'h1;
+                M_sh5_alufn = 6'h00;
+                M_p2_tempc_d = M_sh5_shift;
               end
             end
           end
           5'h08: begin
             if (sp2_tempc >= 5'h06) begin
               if (sp2_blob != 2'h2) begin
-                M_p2_tempc_d = sp2_tempc >> 1'h1;
+                M_sh5_alufn = 6'h01;
+                M_p2_tempc_d = M_sh5_shift;
               end
             end
           end
           5'h02: begin
             if (sp2_tempr <= 7'h30) begin
               if (sp2_blob != 2'h2) begin
-                M_p2_tempr_d = sp2_tempr << 1'h1;
+                M_sh7_alufn = 6'h00;
+                M_p2_tempr_d = M_sh7_shift;
               end
             end
           end
           5'h04: begin
             if (sp2_tempr >= 7'h06) begin
               if (sp2_blob != 2'h2) begin
-                M_p2_tempr_d = sp2_tempr >> 1'h1;
+                M_sh7_alufn = 6'h01;
+                M_p2_tempr_d = M_sh7_shift;
               end
             end
           end
           5'h01: begin
             if (sp2_blob != 2'h2) begin
               M_state_d = SETTLE_P2_state;
+            end
+          end
+        endcase
+        
+        case (p1Btn)
+          5'h10: begin
+            if (sp1_tempc <= 5'h0c) begin
+              if (sp1_blob != 2'h2) begin
+                M_sh5_a = sp1_tempc;
+                M_sh5_alufn = 6'h00;
+                M_p1_tempc_d = M_sh5_shift;
+              end
+            end
+          end
+          5'h08: begin
+            if (sp1_tempc >= 5'h06) begin
+              if (sp1_blob != 2'h2) begin
+                M_sh5_a = sp1_tempc;
+                M_sh5_alufn = 6'h01;
+                M_p1_tempc_d = M_sh5_shift;
+              end
+            end
+          end
+          5'h02: begin
+            if (sp1_tempr <= 7'h30) begin
+              if (sp1_blob != 2'h2) begin
+                M_sh7_a = sp1_tempr;
+                M_sh7_alufn = 6'h00;
+                M_p1_tempr_d = M_sh7_shift;
+              end
+            end
+          end
+          5'h04: begin
+            if (sp1_tempr >= 7'h06) begin
+              if (sp1_blob != 2'h2) begin
+                M_sh7_a = sp1_tempr;
+                M_sh7_alufn = 6'h01;
+                M_p1_tempr_d = M_sh7_shift;
+              end
+            end
+          end
+          5'h01: begin
+            if (sp1_blob != 2'h2) begin
+              M_state_d = SETTLE_P1_state;
             end
           end
         endcase
@@ -558,83 +600,89 @@ module mojo_top_0 (
         end
       end
       PLAY_state: begin
-        
-        case (p1Btn)
-          5'h10: begin
-            if (sp1_tempc <= 5'h08) begin
-              if (sp1_blob != 1'h1) begin
-                M_p1_tempc_d = sp1_tempc << 1'h1;
-              end
-              M_state_d = PLAY_state;
-            end
-          end
-          5'h08: begin
-            if (sp1_tempc >= 5'h02) begin
-              if (sp1_blob != 1'h1) begin
-                M_p1_tempc_d = sp1_tempc >> 1'h1;
-              end
-              M_state_d = PLAY_state;
-            end
-          end
-          5'h02: begin
-            if (sp1_tempr <= 7'h20) begin
-              if (sp1_blob != 1'h1) begin
-                M_p1_tempr_d = sp1_tempr << 1'h1;
-              end
-              M_state_d = PLAY_state;
-            end
-          end
-          5'h04: begin
-            if (sp1_tempr >= 7'h02) begin
-              if (sp1_blob != 1'h1) begin
-                M_p1_tempr_d = sp1_tempr >> 1'h1;
-              end
-              M_state_d = PLAY_state;
-            end
-          end
-          5'h01: begin
-            if (sp1_blob != 1'h1) begin
-              M_state_d = SETTLE_P1_OPP_state;
-            end
-          end
-        endcase
+        M_sh5_a = sp2_tempc;
+        M_sh7_a = sp2_tempr;
         
         case (p2Btn)
           5'h10: begin
             if (sp2_tempc <= 5'h08) begin
               if (sp2_blob != 1'h1) begin
-                M_p2_tempc_d = sp2_tempc << 1'h1;
+                M_sh5_alufn = 6'h00;
+                M_p2_tempc_d = M_sh5_shift;
               end
-              M_state_d = PLAY_state;
             end
           end
           5'h08: begin
             if (sp2_tempc >= 5'h02) begin
               if (sp2_blob != 1'h1) begin
-                M_p2_tempc_d = sp2_tempc >> 1'h1;
+                M_sh5_alufn = 6'h01;
+                M_p2_tempc_d = M_sh5_shift;
               end
-              M_state_d = PLAY_state;
             end
           end
           5'h02: begin
             if (sp2_tempr <= 7'h20) begin
               if (sp2_blob != 1'h1) begin
-                M_p2_tempr_d = sp2_tempr << 1'h1;
+                M_sh7_alufn = 6'h00;
+                M_p2_tempr_d = M_sh7_shift;
               end
-              M_state_d = PLAY_state;
             end
           end
           5'h04: begin
             if (sp2_tempr >= 7'h02) begin
               if (sp2_blob != 1'h1) begin
-                M_p2_tempr_d = sp2_tempr >> 1'h1;
+                M_sh7_alufn = 6'h01;
+                M_p2_tempr_d = M_sh7_shift;
               end
-              M_state_d = PLAY_state;
             end
           end
           5'h01: begin
             if (sp2_blob != 1'h1) begin
               M_state_d = SETTLE_P2_OPP_state;
+            end
+          end
+        endcase
+        
+        case (p1Btn)
+          5'h10: begin
+            if (sp1_tempc <= 5'h08) begin
+              if (sp1_blob != 1'h1) begin
+                M_sh5_a = sp1_tempc;
+                M_sh5_alufn = 6'h00;
+                M_p1_tempc_d = M_sh5_shift;
+              end
+            end
+          end
+          5'h08: begin
+            if (sp1_tempc >= 5'h02) begin
+              if (sp1_blob != 1'h1) begin
+                M_sh5_a = sp1_tempc;
+                M_sh5_alufn = 6'h01;
+                M_p1_tempc_d = M_sh5_shift;
+              end
+            end
+          end
+          5'h02: begin
+            if (sp1_tempr <= 7'h20) begin
+              if (sp1_blob != 1'h1) begin
+                M_sh7_a = sp1_tempr;
+                M_sh7_alufn = 6'h00;
+                M_p1_tempr_d = M_sh7_shift;
+              end
+            end
+          end
+          5'h04: begin
+            if (sp1_tempr >= 7'h02) begin
+              if (sp1_blob != 1'h1) begin
+                M_sh7_a = sp1_tempr;
+                M_sh7_alufn = 6'h01;
+                M_p1_tempr_d = M_sh7_shift;
+              end
+            end
+          end
+          5'h01: begin
+            if (sp1_blob != 2'h2) begin
+              M_state_d = SETTLE_P1_OPP_state;
             end
           end
         endcase
@@ -759,32 +807,7 @@ module mojo_top_0 (
   
   
   always @(posedge clk) begin
-    M_p1_tempc_q <= M_p1_tempc_d;
-  end
-  
-  
-  always @(posedge clk) begin
-    M_p1odff_q <= M_p1odff_d;
-  end
-  
-  
-  always @(posedge clk) begin
-    M_p2_blob_q <= M_p2_blob_d;
-  end
-  
-  
-  always @(posedge clk) begin
-    M_p1_blob_q <= M_p1_blob_d;
-  end
-  
-  
-  always @(posedge clk) begin
     M_p2odff_q <= M_p2odff_d;
-  end
-  
-  
-  always @(posedge clk) begin
-    M_p1sdff_q <= M_p1sdff_d;
   end
   
   
@@ -798,17 +821,42 @@ module mojo_top_0 (
   
   
   always @(posedge clk) begin
-    M_p1_tempr_q <= M_p1_tempr_d;
-  end
-  
-  
-  always @(posedge clk) begin
     M_p2_tempr_q <= M_p2_tempr_d;
   end
   
   
   always @(posedge clk) begin
+    M_p1sdff_q <= M_p1sdff_d;
+  end
+  
+  
+  always @(posedge clk) begin
+    M_p1_tempr_q <= M_p1_tempr_d;
+  end
+  
+  
+  always @(posedge clk) begin
+    M_p2_blob_q <= M_p2_blob_d;
+  end
+  
+  
+  always @(posedge clk) begin
+    M_p1_tempc_q <= M_p1_tempc_d;
+  end
+  
+  
+  always @(posedge clk) begin
+    M_p1_blob_q <= M_p1_blob_d;
+  end
+  
+  
+  always @(posedge clk) begin
     M_p2sdff_q <= M_p2sdff_d;
+  end
+  
+  
+  always @(posedge clk) begin
+    M_p1odff_q <= M_p1odff_d;
   end
   
 endmodule
